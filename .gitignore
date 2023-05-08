@@ -1,0 +1,4 @@
+vendor/
+exports/*
+logs.txt
+composer.lock

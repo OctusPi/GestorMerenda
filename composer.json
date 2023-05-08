@@ -1,0 +1,23 @@
+{
+    "name": "octus/app",
+    "description": "Sistema de Gestão Resposável de Merenda Escolar",
+    "type": "project",
+    "require": {
+        "mpdf/mpdf": "^8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Octus\\App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Octus Pi - DEV"
+        }
+    ],
+    "minimum-stability": "stable"
+}
