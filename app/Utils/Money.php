@@ -22,10 +22,7 @@ class Money
      */
     public static function getFloat(?string $money):?float
     {
-        $money = str_replace('R', '',  $money); //remove R string
-        $money = str_replace('$', '',  $money); //remove $ string
-        $money = str_replace(' ', '',  $money); //remove _ string
-        $money = str_replace('.', '',  $money); //remove dot string
+        $money = str_replace(['R','$',' ','.'], '',  $money); //remove R string
         $money = str_replace(',', '.', $money); //change string comma to dot string
     
         return $money != null ? floatval($money) : 0.0;

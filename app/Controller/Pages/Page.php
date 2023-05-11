@@ -1,5 +1,5 @@
 <?php
-namespace Octus\App\Controller;
+namespace Octus\App\Controller\Pages;
 
 abstract class Page
 {
