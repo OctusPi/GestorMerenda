@@ -9,12 +9,9 @@ class ConnDB
 {
 
     //defines tables in database
-    const TAB_COMPN = 'tabaltf_company';
-    const TAB_USER  = 'tabaltf_usuarios';
-    const TAB_SECTR = 'tabaltf_secretarias';
-    const TAB_DEPTS = 'tabaltf_departamentos';
-    const TAB_FUNCS = 'tabaltf_funcionarios';
-    const TAB_FOLHA = 'tabaltf_folhas';
+    const TAB_COMPN = 'tabgm_company';
+    const TAB_USER  = 'tabgm_usuarios';
+
 
     //defines params to create local connection
     private static string $conntype = 'mysql';
