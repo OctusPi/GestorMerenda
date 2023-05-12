@@ -27,5 +27,4 @@ class Money
     
         return $money != null ? floatval($money) : 0.0;
     }
-    
 }

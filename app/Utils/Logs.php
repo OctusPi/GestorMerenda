@@ -33,8 +33,10 @@ class Logs
      *
      * @return bool|string
      */
-    public static function readLog():bool|string
+    public static function readLog():string
     {
-        return file_get_contents(self::LOG_PATH);
+        return file_exists(self::LOG_PATH) 
+        ? file_get_contents(self::LOG_PATH) 
+        : '';
     }
 }

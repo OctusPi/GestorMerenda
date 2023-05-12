@@ -28,7 +28,17 @@ class Mask
 
     public static function maskPhone(?string $phone):?string
     {
-        return $phone != null ? substr($phone,0,15) : ''; 
+        $maskPhone = '';
+        if($phone != null)
+        {
+            $maskPhone = str_replace([' ', '.', '(', ')', '-'], '', $maskPhone);
+            $maskPhone = substr($phone, 0, 11);
+            $maskPhone = substr_replace($maskPhone, '(', 0, 0);
+            $maskPhone = substr_replace($maskPhone, ')', 3, 0);
+            $maskPhone = substr_replace($maskPhone, '.', 3, 0);
+            $maskPhone = substr_replace($maskPhone, '-', 5, 0);
+        }
+        return $maskPhone; 
     }
     
 }

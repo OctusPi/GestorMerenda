@@ -9,7 +9,7 @@ use Octus\App\Controller\Data\FactoryDao;
 class Session
 {
     //time activite session
-    const SISNAME = 'ALTFOLHA_APP_';
+    const SISNAME = 'GESTOR_MEREANDA_APP_';
     const TIME = 3600;
     
 

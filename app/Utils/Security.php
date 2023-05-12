@@ -38,7 +38,7 @@ class Security
             }
 
             //case user change password mandatory
-            if(Utils::attr('passchange', $usuario) == 1 && Route::gets()['app'] != 'passchange'){
+            if(Utils::atob('passchange', $usuario) == 1 && Route::gets()['app'] != 'passchange'){
                 self::redirect(Route::route(['app'=>'passchange']));
                 exit;
             }

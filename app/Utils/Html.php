@@ -128,6 +128,34 @@ class Html
                 </select>';
     }
 
+    public static function imgRender(?string $path, string $alt = '', string $class = ''):string
+    {
+        return $path != null
+        ? '<img class="'.$class.'" src="uploads/'.$path.'" alt="'.$alt.'" />'
+        : '';
+    }
+
+    public static function imgView(?string $path):string
+    {
+        return $path != null
+        ? '<img src="uploads/'.$path.'" alt="" class="ocp-picture-imgform mx-auto"/>'
+        : '<i class="bi-image-alt text-secondary" style="font-size: 5rem;"></i>';
+    }
+
+    public static function imgReport(?string $path, string $alt = '', string $class = ''):string
+    {
+        return $path != null
+        ? '<img class="'.$class.'" src="'.__DIR__.'/../../uploads/'.$path.'" alt="'.$alt.'" />'
+        : '';
+    }
+
+    public static function imgReport64(?string $img64, string $alt = 'QrCode'):string
+    {
+        return $img64 != null
+        ? '<img src="data:image/png;base64, '.$img64.' " alt="'.$alt.'">'
+        : '';
+    }
+
     /**
      * Method render a generic table with data array
      *
@@ -205,33 +233,5 @@ class Html
         };
 
         return View::renderView('components/nav_tab_action', $action);
-    }
-
-    public static function imgRender(?string $path, string $alt = '', string $class = ''):string
-    {
-        return $path != null
-        ? '<img class="'.$class.'" src="uploads/'.$path.'" alt="'.$alt.'" />'
-        : '';
-    }
-
-    public static function imgView(?string $path):string
-    {
-        return $path != null
-        ? '<img src="uploads/'.$path.'" alt="" class="ocp-picture-imgform mx-auto"/>'
-        : '<i class="bi-image-alt text-secondary" style="font-size: 5rem;"></i>';
-    }
-
-    public static function imgReport(?string $path, string $alt = '', string $class = ''):string
-    {
-        return $path != null
-        ? '<img class="'.$class.'" src="'.__DIR__.'/../../uploads/'.$path.'" alt="'.$alt.'" />'
-        : '';
-    }
-
-    public static function imgReport64(?string $img64, string $alt = 'QrCode'):string
-    {
-        return $img64 != null
-        ? '<img src="data:image/png;base64, '.$img64.' " alt="'.$alt.'">'
-        : '';
     }
 }

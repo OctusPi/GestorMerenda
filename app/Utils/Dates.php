@@ -194,7 +194,7 @@ class Dates
     public static function validDate(?string $dataUtc):bool
     {
 
-        if($dataUtc != null)
+        if($dataUtc != null && count(explode('-', $dataUtc)) == 3)
         {
             $mount = date('n', self::getUnixByDate($dataUtc));
             $day   = date('j', self::getUnixByDate($dataUtc));
