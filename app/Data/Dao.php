@@ -89,8 +89,7 @@ abstract class Dao implements IDao
     {
         //rescue values initializeds in entity and remove last attr (id)
         $params  = $this->getEntity()->getPropsAndValues();
-        //array_pop($params); 
-
+        
         //create binds with attrs entity and wildcards to values
         $binds  = implode(',', array_keys($params));
         $values = implode(',', array_map(function($item){ return '?'; }, $params));
@@ -111,13 +110,10 @@ abstract class Dao implements IDao
     {
         //rescue values initializeds in entity and remove last attr (id)
         $params  = $this->getEntity()->getPropsAndValues();
-        //array_pop($params); 
 
         //create binds with attrs entity and wildcards to values
         $binds = implode(',', array_map(function($item){ return $item.'=?'; }, array_keys($params)));
-
-        $sql = 'UPDATE '.$this->getEntity()->getDataTableEntity()
-        .' SET '.$binds.' WHERE id = '.$this->getEntity()->getAttr('id');
+        $sql   = 'UPDATE '.$this->getEntity()->getDataTableEntity().' SET '.$binds.' WHERE id = '.$this->getEntity()->getAttr('id');
 
         return $this->execQueryBool($sql, $params);
     }
@@ -133,6 +129,7 @@ abstract class Dao implements IDao
         if($all)
         {
             $sql = 'DELETE FROM '.$this->getEntity()->getDataTableEntity();
+
         }else{
             $where = $params == null
             ? 'id = ' . $this->getEntity()->getAttr('id')
@@ -143,8 +140,7 @@ abstract class Dao implements IDao
             $sql = 'DELETE FROM '.$this->getEntity()->getDataTableEntity()
             .' WHERE '.$where;
         }
-        
-
+    
         return $this->execQueryBool($sql);
     }
 
@@ -156,7 +152,6 @@ abstract class Dao implements IDao
      */
     public function daoGetOne(array $params = [], string $mode = ' AND ', string $columns = '*'):?Entity
     {
-    
         //create binds and fields dynamic by entity and params search
         $params = $this->mapParams($params);
         $binds  = array_map($this->mapOperator(), array_keys($params), array_values($params));
@@ -191,7 +186,7 @@ abstract class Dao implements IDao
         $params = $this->mapParams($params);
         $binds  = array_map($this->mapOperator(), array_keys($params), array_values($params));
         $fields = $params != null ? ' WHERE '. implode($mode, $binds) : '';
-		$search = $search = array_map($this->mapWildCard(), array_values($params));
+		$search = $this->lineWildCard(array_map($this->mapWildCard(), array_values($params)));
 
         //make fields order and limit
         $order = strlen($order) ? ' ORDER BY '.$order : '';
@@ -200,8 +195,20 @@ abstract class Dao implements IDao
         //make sql
         $sql = 'SELECT '.$columns.' FROM '.$this->getEntity()->getDataTableEntity().$fields.$order.$limit;
 
-        //execute query and return array statment
-        return $this->execQueryFetch($sql, $search, true);
+        //execute query and get array statment
+        $entft = [];
+        $fetch = $this->execQueryFetch($sql, $search, true);
+
+        //loop statment end feed entity array
+        if($fetch !=null){
+            foreach ($fetch as $food) {
+                $nmentity = $this->getEntity()->classname();
+                $entity   = new $nmentity();
+                $entity  -> feedsEntity($food);
+                $entft[]  = $entity;
+            }
+        }
+        return $entft;
     }
 
     /**
@@ -216,39 +223,37 @@ abstract class Dao implements IDao
      */
     public function daoGetJoin(array $joins, array $params = [], string $order = '', string $limit = '', string $mode = ' AND ', string $columns = '*'):?array
     {
-        //make jois values and concatene tables
-        $bdjoins = array_map(
-            function($chave, $valor){ return $chave.' ON '.$valor; }, 
-            array_keys($joins), 
-            array_values($joins)
-        );
-        $tbjoins = ' INNER JOIN '.implode(' INNER JOIN ', $bdjoins);
 
-        //create binds and fields dynamic by entity and params search
+        //make join values and concatene tables
+		$mapfields = array_map($this->mapJoin(), array_keys($joins), array_values($joins));
+        $maptabs   = array_map(
+            function($chave, $valor){
+                return $chave.' ON '.$valor;
+            },
+            array_keys($joins), 
+            array_values($mapfields)
+        );
+        $innerjoin = ' INNER JOIN '.implode(' INNER JOIN ', $maptabs);
+
+        //params search, case null use entity props
         $params = $this->mapParams($params);
+
+        //map operators sql where
         $binds  = array_map($this->mapOperator(), array_keys($params), array_values($params));
+        
+        //concatene binds in fields with mode search
         $fields = $params != null ? ' WHERE '. implode($mode, $binds) : '';
-		$search = $this->normalizeWildCardJoin(array_map($this->mapWildCard(), $params));
+        $search = $this->lineWildCard(array_map($this->mapWildCard(), $params));
 
         //make fields order and limit
         $order = strlen($order) ? ' ORDER BY '.$order : '';
         $limit = strlen($limit) ? ' LIMIT '.$limit : '';
 
         //make sql
-        $sql = 'SELECT '.$columns.' FROM '.$this->getEntity()->getDataTableEntity().$tbjoins.$fields.$order.$limit;
+        $sql = 'SELECT '.$columns.' FROM '.$this->getEntity()->getDataTableEntity().$innerjoin.$fields.$order.$limit;
 
         //execute query and return array statment
         return $this->execQueryFetch($sql, $search, true);
-    }
-
-    /**
-     * Method return json with values to entity
-     *
-     * @return string
-     */
-    public function daoGetJson():string
-    {
-        return $this->getEntity()->getJsonPropsAndValues();
     }
 
     /**
@@ -309,26 +314,59 @@ abstract class Dao implements IDao
         return $defineWC;
     }
 
+	/**
+	 * Mapping join tables and respective fiends
+	 *
+	 * @return callable
+	 */
+    private function mapJoin():callable
+    {
+        $mapJoin = function($table, $campos){
+            //initialize arrays to insert rigth values to join operation and define primary table
+			$binds		= [];
+			$join 		= [];
+            $tabprimaty = $this->getEntity()->getDataTableEntity();
+
+			//concatene tables with field by position in array
+            foreach ($campos as $key => $campo) {
+               if($key == 0 || $key%2 == 0){
+					$binds[] = $tabprimaty.'.'.$campo;
+               }else{
+					$binds[] = $table.'.'.$campo;
+               }
+            }
+
+			//unify fields and feed array join
+			foreach (array_keys($binds) as $k) {
+				if($k > 0 && $k%2 != 0){
+					$join[] = $binds[$k-1].' = '.$binds[$k];
+				}
+			}
+
+			return implode(' AND ', $join);
+        };
+
+        return $mapJoin;
+    }
+
     /**
-     * Method conver array of arrays and one unique array to exec PDO Join with BETWEEN Operator
+     * Method convert array of arrays and one unique array to exec PDO Join with BETWEEN Operator
      * @param array|null $mapwild
      * @return array
      */
-    private function normalizeWildCardJoin(?array $mapwild):array
+    private function lineWildCard(array $mapwild, array $merge = []):array
     {
-        $normalize = [];
+
         if($mapwild != null){
             foreach ($mapwild as $map) {
                 if(is_array($map)){
-                    foreach ($map as $item) {
-                        $normalize[] = $item;
-                    }
+                    $this->lineWildCard($map, $merge);
                 }else{
-                    $normalize[] = $map;
+                    $merge[] = $map;
                 }
             }
         }
-        return $normalize;
+        return $merge;
     }
 
     /**

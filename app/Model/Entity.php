@@ -18,6 +18,11 @@ abstract class Entity implements IEntity
     {
         $this->setAttr('id', 0);
     }
+
+    public function classname():string
+    {
+        return static::class;
+    }
     
     /**
      * Smart set value in property class

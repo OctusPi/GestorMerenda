@@ -84,10 +84,4 @@ interface IDao
      */
     public function daoGetJoin(array $joins, array $params = [], string $order = '', string $limit = '', string $mode = ' AND '):?array;
 
-    /**
-     * Method return json with values to entity
-     *
-     * @return string
-     */
-    public function daoGetJson():string;
 }
