@@ -1,10 +1,11 @@
 <?php
 namespace Octus\App\Utils;
 
+use Exception;
 use Octus\App\Utils\Logs;
 use Octus\App\Utils\Utils;
 use Octus\App\Model\EntityUsuario;
-use Octus\App\Controller\Data\FactoryDao;
+use Octus\App\Data\FactoryDao;
 
 class Session
 {
@@ -151,7 +152,7 @@ class Session
         try{
             session_destroy();
             unset($_SESSION);
-        }catch(\Exception $e){
+        }catch(Exception $e){
             Logs::writeLog('Erro: Falha ao finalizar sessão - '.$e->getMessage(), $this->getUser());
         }
     }

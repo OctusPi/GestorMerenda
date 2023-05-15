@@ -35,6 +35,9 @@ class EntityUsuario extends Entity
     protected ?string $lastlogin;
     protected ?string $nowlogin;
     protected int     $passchange;
+    protected ?string $dtcreate;
+    protected ?string $dtupdate;
+    protected int $agente;
 
     public function __construct()
     {
