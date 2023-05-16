@@ -1,6 +1,7 @@
 <?php
 namespace Octus\App\Model;
 
+use Octus\App\Controller\Components\BuildNav;
 use Octus\App\Data\ConnDB;
 use Octus\App\Model\Entity;
 use Octus\App\Utils\Utils;
@@ -13,12 +14,17 @@ class EntityUsuario extends Entity
     const PRF_GESTOR  = 2;
     const PRF_DEPTO   = 3;
 
-    const NVL_INICIAL      = 0;
-    const NVL_ESTRUTURA    = 1;
-    const NVL_FUNCIONARIOS = 2;
-    const NVL_FOLHA        = 3;
-    const NVL_RPORTS       = 4;
-    const NVL_BIGBOSS      = 5;
+    const NVL_INICIAL       = 0;
+    const NVL_PRODUCAO      = 1;
+    const NVL_SECRETARIAS   = 2;
+    const NVL_DEPARTAMENTOS = 3;
+    const NVL_CALENDARIO    = 4;
+    const NVL_INSUMOS       = 5;
+    const NVL_ESTOQUE       = 6;
+    const NVL_ENTRADAS      = 7;
+    const NVL_SAIDAS        = 8;
+    const NVL_RPORTS        = 9;
+    const NVL_BIGBOSS       = 10;
 
     //propertys
     protected string  $nome;
@@ -45,22 +51,6 @@ class EntityUsuario extends Entity
     }
 
     /**
-     * set property nivel value by perfil
-     *
-     * @param int $perfil
-     * @return void
-     */
-    public function buildNivel(int $perfil):void
-    {
-        $this->nivel = match($perfil){
-            self::PRF_ADMIN   => implode(',', array_keys(self::getNivelArr())),
-            self::PRF_GESTOR  => '0,1,2,3,4',
-            self::PRF_DEPTO   => '0,2,3',
-            default => '0'
-        };
-    }
-
-    /**
      * Method return credentials to level access witn profile and level of access user
      *
      * @return array
@@ -76,22 +66,48 @@ class EntityUsuario extends Entity
     }
 
     /**
-     * Build Access Nav to user by profile
+     * set property nivel value by perfil
      *
-     * @return array
+     * @param int $perfil
+     * @return void
      */
-    public function getAuthNav():array{
-        return match($this->perfil){
-            self::PRF_ADMIN,     
-            self::PRF_GESTOR => [self::NVL_FOLHA, self::NVL_FUNCIONARIOS, self::NVL_ESTRUTURA, self::NVL_RPORTS],
-            self::PRF_DEPTO  => [self::NVL_FOLHA, self::NVL_FUNCIONARIOS],
-            default          => []
+    public function buildnivel(int $perfil):void
+    {
+        $this->nivel = match($perfil){
+            self::PRF_ADMIN   => implode(',', array_keys(self::getNivelArr())),
+            self::PRF_GESTOR  => '0,3,4,5,6,7,8,9,10',
+            self::PRF_DEPTO   => '0,1,4,6,7,9',
+            default => '0'
         };
     }
 
     public function buildnav():array
     {
-        return [];
+        return match($this->perfil)
+        {
+            self::PRF_ADMIN => [
+                ['producao'],
+                ['secretarias', 'departamentos', 'calendario'],
+                ['insumos', 'estoque', 'entradas', 'saidas'],
+                ['relatorios']
+            ],
+
+            self::PRF_GESTOR => [
+                ['departamentos', 'calendario'],
+                ['insumos', 'estoque', 'entradas', 'saidas'],
+                ['relatorios']
+            ],
+
+            self::PRF_DEPTO => [
+                ['producao'],
+                ['calendario'],
+                ['estoque', 'entradas'],
+                ['relatorios']
+            ],
+
+            default => []
+        };
+
     }
 
 
@@ -161,7 +177,7 @@ class EntityUsuario extends Entity
         return [
             self::PRF_ADMIN  => 'Administrador Sistema',
             self::PRF_GESTOR => 'Gestor Municipal',
-            self::PRF_DEPTO  => 'Chefe ou Diretor Escolar'
+            self::PRF_DEPTO  => 'Coordenador|Diretor Escolar'
         ];
     }
 
@@ -173,12 +189,18 @@ class EntityUsuario extends Entity
     public static function getNivelArr():array
     {
         return [
-            self::NVL_INICIAL      => 'Acesso Inicial',
-            self::NVL_ESTRUTURA    => 'Controle de Secretaria e Departamentos',
-            self::NVL_FUNCIONARIOS => 'Registro de Funcionarios',
-            self::NVL_FOLHA        => 'Monitoramento Alteração de Folha',
-            self::NVL_RPORTS       => 'Relatórios',
-            self::NVL_BIGBOSS      => 'Administraçao Geral',
+            self::NVL_INICIAL       => 'Acesso Inicial',
+            self::NVL_PRODUCAO      => 'Registro de Produção',
+            self::NVL_SECRETARIAS   => 'Gestão de Secretarias',
+            self::NVL_DEPARTAMENTOS => 'Gestão de Departamentos',
+            self::NVL_CALENDARIO    => 'Gestão Calendário Escolar',
+            self::NVL_INSUMOS       => 'Registro de Insumos',
+            self::NVL_ESTOQUE       => 'Gestão de Estoque',
+            self::NVL_ENTRADAS      => 'Registro de Entrada de Insumos',
+            self::NVL_SAIDAS        => 'Registro de Saídas de Insumos',
+            self::NVL_RPORTS        => 'Emissão de Relatórios',
+            self::NVL_BIGBOSS       => 'Administração Total',
+            
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace Octus\App\Model;
 use Octus\App\Model\Entity;
 use Octus\App\Data\ConnDB;
 
-class EntityInfo extends Entity
+class EntityCompany extends Entity
 {
     protected string  $sistema;
     protected string  $descricao;

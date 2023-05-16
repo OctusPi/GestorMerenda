@@ -1,5 +1,6 @@
 <?php
 namespace Octus\App\Controller\Pages;
+
 use Octus\App\Data\FactoryDao;
 use Octus\App\Model\EntityCompany;
 use Octus\App\Model\EntityUsuario;
@@ -10,6 +11,7 @@ use Octus\App\Utils\Security;
 use Octus\App\Utils\Session;
 use Octus\App\Utils\Utils;
 use Octus\App\Utils\View;
+use Octus\App\Controller\Components\NavBuilder;
 
 abstract class Page
 {
@@ -104,7 +106,7 @@ abstract class Page
             'user_perfil'    => $this->usuario != null ? Utils::at($this->usuario->getAttr('perfil'), EntityUsuario::getPerfilArr()) : '',
             'user_lastlogin' => Dates::fmttDateTimeView(Utils::atob('lastlogin', $this->usuario)),
             'user_adm'       => $isAdm ? '' : 'd-none', 
-            'nav_router'     => ''//Html::buildNavRoter($this->usuario)
+            'nav_builder'    => NavBuilder::build($this->usuario)
         ];
         return $hshow ? View::renderView('fragments/header', $params) : '';
     }
