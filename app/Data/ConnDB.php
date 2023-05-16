@@ -14,6 +14,10 @@ class ConnDB
     const TAB_SECTR = 'tabgm_secretarias';
     const TAB_DEPTS = 'tabgm_departamentos';
     const TAB_INSMS = 'tabgm_insumos';
+    const TAB_ESTOQ = 'tabgm_estoques';
+    const TAB_ENTRD = 'tabgm_entradas';
+    const TAB_SAIDS = 'tabgm_saidas';
+    const TAB_HISTR = 'tabgm_historys';
 
 
     //defines params to create local connection

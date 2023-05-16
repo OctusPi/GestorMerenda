@@ -10,14 +10,10 @@ class EntityDepartamento extends Entity
     protected string $departamento;
     protected ?string $inep;
     protected int|EntitySecretaria $secretaria;
+    protected string $alunado;
     protected ?string $endereco;
     protected ?string $telefone;
     protected ?string $email;
-    protected int $qtinfantil;
-    protected int $qtfund1;
-    protected int $qtfund2;
-    protected int $qtmedio;
-    protected int $qteja;
     protected ?string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
@@ -25,6 +21,16 @@ class EntityDepartamento extends Entity
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function setAlunado(array $alunado):void
+    {
+        $this->alunado = serialize($alunado);
+    }
+
+    public function getAlunado():array
+    {
+        return unserialize($this->alunado);
     }
 
     /**
@@ -54,7 +60,7 @@ class EntityDepartamento extends Entity
      */
     public static function getObrPropsClass():array
     {
-        return ['departamento', 'secretaria'];
+        return ['tipo', 'departamento', 'secretaria'];
     }
 
     public static function tipoArr():array
@@ -62,7 +68,18 @@ class EntityDepartamento extends Entity
         return[
             1 => 'Escola',
             2 => 'Creche',
-            3 => 'Departamento'
+            3 => 'Núcleo',
+            4 => 'Departamento'
+        ];
+    }
+
+    public static function nivelArr():array
+    {
+        return [
+            1 => 'Creche | Berçário',
+            2 => 'Pre Escola',
+            3 => 'Fundamental | EJA',
+            4 => 'Integral | Contraturno',
         ];
     }
 
