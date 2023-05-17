@@ -7,6 +7,7 @@ class EntityHistory extends Entity
     protected int $tipo;
     protected int $origem;
     protected ?string $observacao;
+    protected int $status;
     protected ?string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
@@ -32,5 +33,15 @@ class EntityHistory extends Entity
             1 => 'Entrada',
             2 => 'Saída',
         ];
+    }
+    
+    public static function statusArr(int $tipo):array
+    {
+        return match($tipo)
+        {
+            1 => EntityEntrada::statusArr(),
+            2 => EntitySaida::statusArr(),
+            default => []
+        };
     }
 }

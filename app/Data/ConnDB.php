@@ -7,7 +7,6 @@ use PDOException;
 
 class ConnDB
 {
-
     //defines tables in database
     const TAB_COMPN = 'tabgm_company';
     const TAB_USER  = 'tabgm_usuarios';
@@ -18,6 +17,8 @@ class ConnDB
     const TAB_ENTRD = 'tabgm_entradas';
     const TAB_SAIDS = 'tabgm_saidas';
     const TAB_HISTR = 'tabgm_historys';
+    const TAB_PRODU = 'tabgm_producao';
+    const TAB_CALEND = 'tabgm_calendario';
 
 
     //defines params to create local connection
