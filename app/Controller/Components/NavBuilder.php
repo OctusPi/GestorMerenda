@@ -6,27 +6,33 @@ use Octus\App\Utils\View;
 class NavBuilder
 {
 
-    public static function build(EntityUsuario $user):string
+    public static function build(?EntityUsuario $user):string
     {
-        $userstruct = $user->buildnav();
-        $navstruct  = self::navstruct();
-        $tabs       = [];
+        if($user != null)
+        {
+            $userstruct = $user->buildnav();
+            $navstruct  = self::navstruct();
+            $tabs       = [];
 
-        foreach ($userstruct as $ustruct) {
-            if(is_array($ustruct))
-            {
-                $navtabs = [];
-                foreach ($ustruct as $nav) {
-                    if(key_exists($nav, $navstruct))
-                    {
-                        $navtabs[] = $navstruct[$nav];
+            foreach ($userstruct as $ustruct) {
+                if(is_array($ustruct))
+                {
+                    $navtabs = [];
+                    foreach ($ustruct as $nav) {
+                        if(key_exists($nav, $navstruct))
+                        {
+                            $navtabs[] = $navstruct[$nav];
+                        }
                     }
+                    $tabs[] = $navtabs;
                 }
-                $tabs[] = $navtabs;
             }
-        }
+            return self::nav($tabs);
 
-        return self::nav($tabs);
+        }else{
+            return '';
+        }
+        
     }
 
     private static function nav(array $tabs):string

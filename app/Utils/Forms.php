@@ -4,6 +4,7 @@ namespace Octus\App\Utils;
 use Octus\App\Utils\Logs;
 use Octus\App\Utils\Utils;
 use Octus\App\Utils\Security;
+use Octus\App\Controller\Pages\Page;
 
 class Forms
 {

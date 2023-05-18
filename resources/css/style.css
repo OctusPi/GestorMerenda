@@ -1,0 +1,279 @@
+*{
+    font-family: var(--ft-base);
+}
+
+html, body{
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+hr{
+    color: var(--bg-gray);
+}
+
+label{
+    color: var(--bg-contrast);
+}
+
+button, a{
+    border-radius: var(--btn-radio);
+    border: none;
+    padding: 10px;
+}
+
+input[type="radio"]:checked{
+    content: none;
+    border: none;
+    background: var(--bg-base);
+}
+
+footer{
+    width: 100%;
+    display: block;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+.bg-fundo{
+    background-color: var(--bg-fundo);
+    background-image: url("../imgs/bg.svg");
+}
+
+.ocp-hidden{
+    visibility:hidden;
+    display: none;
+}
+
+.ocp-show{
+    visibility:visible;
+    display: block;
+}
+
+.text-little{
+    font-size: x-small;
+}
+
+.form-control:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.notfound{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.notfound img{
+    margin: auto;
+    vertical-align: middle;
+}
+
+.ocp-shadow-wall{
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(242, 242, 242, 0.766);
+    z-index: 3000;
+}
+
+#ocp-loading-indicator{
+    color: var(--bg-base);
+    position: fixed;
+    z-index: 3001;
+    left: 49%;
+    top: 50%;
+}
+
+.container-signin{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.form-signin {
+    max-width: 380px;
+    min-height: auto;
+    margin: auto;
+    border-radius: var(--radio);
+}
+
+.title-signin
+{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.description-signin
+{
+    font-size: small;
+}
+
+.ocp-input-form{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+    border-radius: var(--radio);
+    padding: 10px 15px;
+    background: var(--bg-imput);
+    border: 1px var(--bg-impborder) solid;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: 0.4s;
+}
+
+.ocp-input-form:focus{
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: var(--bg-impfocus);
+    border: 1px var(--bg-base) solid;
+    transition: 0.4s;
+}
+
+.ocp-input-form:disabled{
+    background: var(--bg-shadow)!important;
+}
+
+.ocp-input-form::placeholder{
+    color: var(--bg-ligthgray);
+}
+
+.ocp-enfase{
+    border: 1px var(--bg-danger) solid;
+}
+
+.alert{
+    border: none;
+    padding: 6px;
+    font-size: small;
+    margin-top: 10px;
+    border-radius: var(--btn-radio);
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: var(--bg-success);
+    color: var(--bg-success-dark);
+}
+
+.alert-info {
+    background-color: var(--bg-primary);
+    color: var(--bg-primary-dark);
+}
+
+.alert-warning {
+    background-color: var(--bg-warning);
+    color: var(--bg-warning-dark);
+}
+
+.alert-danger {
+    background-color: var(--bg-danger);
+    color: var(--bg-danger-dark);
+}
+
+.btn{
+    font-size: small;
+    font-weight: 500;
+    padding: 6px 15px;
+}
+
+.btn:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn-accept{
+    background-color: var(--bg-base);
+    color: var(--cc-text);
+    border-radius: var(--btn-radio);
+    transition: 0.2s;
+}
+
+.btn-accept:hover{
+    background-color: var(--bg-hover);
+    color: var(--bg-action);
+    transition: 0.2s;
+}
+
+.btn-action{
+    background-color: var(--bg-action);
+    color: var(--bg-hover);
+    border-radius: var(--btn-radio);
+    transition: 0.2s;
+}
+
+.btn-action:hover{
+    background-color: var(--bg-hover);
+    color: var(--cc-text);
+    transition: 0.2s;
+}
+
+.btn-cancel{
+    background-color: var(--bg-impfocus);
+    color: var(--bg-gray);
+    border-radius: var(--btn-radio);
+    transition: 0.2s;
+}
+
+.btn-cancel:hover{
+    background-color: var(--bg-fundo);
+    color: var(--bg-navhome);
+    transition: 0.2s;
+}
+
+.btn-cancel a{
+    color: var(--bg-gray);
+    transition: 0.2s;
+}
+
+.btn-cancel a:hover{
+    color: var(--bg-navhome);
+    transition: 0.2s;
+}
+
+.btn-table{
+    background-color: var(--bg-impfocus);
+    color: var(--bg-gray);
+    border-radius: var(--btn-radio);
+    transition: 0.2s;
+}
+
+.btn-table:hover{
+    background-color: var(--bg-base);
+    color: var(--cc-text);
+    transition: 0.2s;
+}
+
+.btn-table-danger{
+    background-color: var(--bg-impfocus);
+    color: var(--bg-gray);
+    border-radius: var(--btn-radio);
+    transition: 0.2s;
+}
+
+.btn-table-danger:hover{
+    background-color: var(--bg-danger);
+    color: var(--cc-text);
+    transition: 0.2s;
+}

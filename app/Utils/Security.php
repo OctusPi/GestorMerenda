@@ -8,7 +8,7 @@ use Octus\App\Controller\Pages\Page;
 
 class Security
 {
-    private static string $token = Pages::APPNAME.'966d1c46d9f4a6c8eaa5e6d0a40e8a3e';
+    private static string $token = Page::APPNAME.'966d1c46d9f4a6c8eaa5e6d0a40e8a3e';
     private static int $offtime  = 0;
     private static int $attempts = 5;
 
