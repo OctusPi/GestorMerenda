@@ -1,38 +1,33 @@
 *{
     font-family: var(--ft-base);
+    box-sizing: border-box;
 }
 
 html, body{
     height: 100%;
 }
-
 a{
     text-decoration: none;
 }
 a:hover{
     text-decoration: none;
 }
-
 hr{
     color: var(--bg-gray);
 }
-
 label{
-    color: var(--bg-contrast);
+    color: var(--cc-label);
 }
-
 button, a{
     border-radius: var(--btn-radio);
     border: none;
     padding: 10px;
 }
-
 input[type="radio"]:checked{
     content: none;
     border: none;
     background: var(--bg-base);
 }
-
 footer{
     width: 100%;
     display: block;
@@ -42,44 +37,35 @@ footer{
     opacity: 0.5;
     font-size: 0.8rem;
 }
-
 .bg-fundo{
     background-color: var(--bg-fundo);
     background-image: url("../imgs/bg.svg");
 }
-
 .ocp-hidden{
     visibility:hidden;
     display: none;
 }
-
 .ocp-show{
     visibility:visible;
     display: block;
 }
-
 .text-little{
     font-size: x-small;
 }
-
 .form-control:focus {
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-
-.notfound{
+.denied{
     height: 100vh;
     display: flex;
     align-items: center;
     vertical-align: middle;
 }
-
-.notfound img{
+.denied img{
     margin: auto;
-    vertical-align: middle;
 }
-
 .ocp-shadow-wall{
     min-width: 100%;
     min-height: 100%;
@@ -90,7 +76,6 @@ footer{
     background-color: rgba(242, 242, 242, 0.766);
     z-index: 3000;
 }
-
 #ocp-loading-indicator{
     color: var(--bg-base);
     position: fixed;
@@ -98,33 +83,31 @@ footer{
     left: 49%;
     top: 50%;
 }
-
 .container-signin{
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-top: 40px;
     padding-bottom: 40px;
 }
-
 .form-signin {
     max-width: 380px;
     min-height: auto;
-    margin: auto;
-    border-radius: var(--radio);
+    
+}
+.form-signin-divisor img{
+    height: 240px;
+    width: auto;
 }
 
-.title-signin
-{
-    font-size: x-large;
+.title-signin{
+    font-size: large;
     font-weight: bold;
 }
-
-.description-signin
-{
+.description-signin{
     font-size: small;
 }
-
 .ocp-input-form{
     appearance: none;
     -webkit-appearance: none;
@@ -138,7 +121,6 @@ footer{
     font-weight: 500;
     transition: 0.4s;
 }
-
 .ocp-input-form:focus{
     outline: 0;
     -webkit-box-shadow: none;
@@ -147,19 +129,15 @@ footer{
     border: 1px var(--bg-base) solid;
     transition: 0.4s;
 }
-
 .ocp-input-form:disabled{
     background: var(--bg-shadow)!important;
 }
-
 .ocp-input-form::placeholder{
     color: var(--bg-ligthgray);
 }
-
 .ocp-enfase{
     border: 1px var(--bg-danger) solid;
 }
-
 .alert{
     border: none;
     padding: 6px;
@@ -170,110 +148,81 @@ footer{
     font-weight: 400;
     text-align: center;
 }
-
 .alert-success {
     background-color: var(--bg-success);
     color: var(--bg-success-dark);
 }
-
 .alert-info {
     background-color: var(--bg-primary);
     color: var(--bg-primary-dark);
 }
-
 .alert-warning {
     background-color: var(--bg-warning);
     color: var(--bg-warning-dark);
 }
-
 .alert-danger {
     background-color: var(--bg-danger);
     color: var(--bg-danger-dark);
 }
-
 .btn{
     font-size: small;
     font-weight: 500;
     padding: 6px 15px;
+    border-radius: var(--btn-radio);
+    border: none;
 }
-
 .btn:focus {
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-
 .btn-accept{
     background-color: var(--bg-base);
     color: var(--cc-text);
-    border-radius: var(--btn-radio);
     transition: 0.2s;
 }
-
 .btn-accept:hover{
     background-color: var(--bg-hover);
     color: var(--bg-action);
     transition: 0.2s;
 }
-
 .btn-action{
     background-color: var(--bg-action);
     color: var(--bg-hover);
-    border-radius: var(--btn-radio);
     transition: 0.2s;
 }
-
 .btn-action:hover{
     background-color: var(--bg-hover);
-    color: var(--cc-text);
+    color: var(--bg-action);
     transition: 0.2s;
 }
-
 .btn-cancel{
     background-color: var(--bg-impfocus);
     color: var(--bg-gray);
-    border-radius: var(--btn-radio);
     transition: 0.2s;
 }
-
 .btn-cancel:hover{
     background-color: var(--bg-fundo);
     color: var(--bg-navhome);
     transition: 0.2s;
 }
-
-.btn-cancel a{
-    color: var(--bg-gray);
+.btn-warning{
+    background-color: var(--bg-warning);
+    color: var(--bg-warning-dark);
     transition: 0.2s;
 }
-
-.btn-cancel a:hover{
-    color: var(--bg-navhome);
+.btn-warning:hover{
+    background-color: var(--bg-warning-dark);
+    color: var(--bg-warning);
     transition: 0.2s;
 }
-
-.btn-table{
-    background-color: var(--bg-impfocus);
-    color: var(--bg-gray);
-    border-radius: var(--btn-radio);
-    transition: 0.2s;
-}
-
-.btn-table:hover{
-    background-color: var(--bg-base);
-    color: var(--cc-text);
-    transition: 0.2s;
-}
-
-.btn-table-danger{
-    background-color: var(--bg-impfocus);
-    color: var(--bg-gray);
-    border-radius: var(--btn-radio);
-    transition: 0.2s;
-}
-
-.btn-table-danger:hover{
+.btn-danger{
     background-color: var(--bg-danger);
-    color: var(--cc-text);
+    color: var(--bg-danger-dark);
+    transition: 0.2s;
+}
+.btn-danger:hover{
+    background-color: var(--bg-danger-dark);
+    color: var(--bg-danger);
     transition: 0.2s;
 }

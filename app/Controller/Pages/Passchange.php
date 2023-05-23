@@ -16,12 +16,12 @@ class Passchange extends Page
 {
     public function __construct(Session $session, ?EntityUsuario $usuario = null)
     {
-        parent::__construct($session, $usuario);
+        parent::__construct($session, $usuario, false);
         
         //checks request change temp passwd
-        if(Utils::atob('passchange', $this->usuario) != 1){
-            Security::redirect('?app=home');
-        }
+        // if(!Utils::atob('passchange', $this->usuario)){
+        //     Security::redirect('?app=home');
+        // }
     }
 
     public function viewpage():string
@@ -32,7 +32,7 @@ class Passchange extends Page
             'user_mail' => Utils::atob('email', $this->usuario)
         ];
 
-        return $this->getPage('Mudar Senha', 'pages/changepass', $params, false, false);
+        return $this->getPage('Mudar Senha', 'pages/passchange', $params, false, false);
     }
 
     public function proccess():string

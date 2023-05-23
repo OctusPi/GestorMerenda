@@ -4,34 +4,32 @@
             <img src="resources/imgs/logo.svg" alt="logo sistema">
         </div>
         <div class="form-signin-divisor">
+            <h1 class="title-signin p-0 m-0">Recuperar Senha</h1>
             <h1 class="title-signin p-0 m-0">{{sisname}}</h1>
             <p class="description-signin p-0 m-0">{{sisdesc}}</p>
-            <form action="{{action}}" method="post" enctype="multipart/form-data" 
-            id="fproc" class="mt-2 px-5">
+            <form action="{{action}}" method="post" enctype="multipart/form-data" id="genericform" class="mt-2 px-5 asyncform">
                 <div id="msgalert"></div>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="text" id="cpf" name="uid"
-                                   class="form-control ocp-input-form ocp-mandatory maskcpf my-3" 
-                                   placeholder="Num. CPF" autofocus>
+                            <input type="text" id="cpf" name="cpf"
+                                   class="form-control ocp-input-form ocp-mandatory maskcpf my-3" placeholder="Num. CPF" autofocus>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" id="password" name="pid"
-                                   class="form-control ocp-input-form ocp-mandatory" 
-                                   placeholder="Senha">
+                            <input type="email" id="email" name="email"
+                                   class="form-control ocp-input-form ocp-mandatory" placeholder="E-mail de Cadastro">
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-accept btn-block mt-3 mb-1" type="submit">
+                <button class="btn btn-sm btn-warning btn-block mt-3 mb-1" type="submit">
                     <i class="bi-check-circle-fill" style="font-size: 0.8rem;"></i>
-                    Entrar
+                    Recuperar
                 </button>
-                <a class="d-block small" href="?app=recover">Esqueceu sua Senha?</a>
+                <a class="d-block small" href="?app=login">Voltar para o login!</a>
                 <p class="text-little m-0 p-0 mt-2">{{syscopy}}</p>
-                <input type="hidden" name="token" value="{{token}}">
+                <input type="hidden" class="ocp-input-form" name="token" value="{{token}}">
             </form>
         </div>
     </div>
