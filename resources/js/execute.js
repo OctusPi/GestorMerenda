@@ -1,6 +1,6 @@
-const forms = new Forms()
-const utils = new Utils()
-const map   = new Mapper(
+const forms  = new Forms()
+const utils  = new Utils()
+const mapper = new Mapper(
     "#fproc",
     "#fsearch",
 
@@ -9,9 +9,9 @@ const map   = new Mapper(
     ).map
 
 //forms rotines
-forms.prevsub()
-forms.register({form:map.fproc, search:map.fsearch})
+//forms.prevsub()
+forms.register({form:mapper.fproc, search:mapper.fsearch})
 
 
 //mask elements
-utils.mask(map.maskcpf, 'cpf')
+utils.mask(mapper.maskcpf, 'cpf')

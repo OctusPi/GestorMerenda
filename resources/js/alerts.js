@@ -16,11 +16,11 @@ class Alerts
     messages = {
         error:     'Erro ao processar solicitação...',
         rededown:  'Servidor Temporáriamente Indisponível',
-        warning:   'Atenção! Sua soliciação não pode ser processada!',
+        warning:   'Falha ao processar solicitação!',
         notfound:  'Dados não localizados!',
         mandatory: 'Campos obrigatórios não informados!',
-        leastone:  'Informe pelo menos 01 item para realizar a busca!',
-        duplici:   'Solicitação não processada, tentativa de duplicação de dados!',
+        leastone:  'Informe um campo de busca',
+        duplici:   'Falha tentativa de duplicação de dados!',
         callback:  'Falha interna, contate o suporte!',
         success:   'Operação realizada com sucesso!'
     }

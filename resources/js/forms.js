@@ -64,14 +64,15 @@ class Forms
      */
     sendform(params){
         if(params.form){
-            
-            //instace local utilitary functions
-            const alerts = this.alerts;
 
-            const fproc   = params.form
-            const fsearch = params.search
+            params.form.addEventListener('submit', e => {
 
-            fproc.addEventListener('submit', e => {
+                //instace local utilitary functions
+                const alerts = this.alerts;
+
+                const fproc   = params.form
+                const fsearch = params.search
+
                 //prevent envent submit and reset any alerts
                 e.preventDefault()
                 this.alerts.resetalert()
@@ -79,15 +80,12 @@ class Forms
                 //checks empts of mandatory inputs
                 if(this.chkmandatory(fproc)){
 
-                    //show loading animation
-                    this.utils.loading(true)
-                    
                     //make data to body api fetch
-                    const data = new FormData(fproc)
+                    const formData = new FormData(fproc);
                     if(fproc.dataset.reloadview){
                         //append in data params to search of reload view registers
                         const appdata = fsearch ? new FormData(fsearch) : fproc.dataset.reloadview
-                        data.append('search', appdata)
+                        formData.append('search', appdata)
                     }
 
                     //params to request fetch api
@@ -96,8 +94,11 @@ class Forms
                         redirect: "follow",
                         mode:     "cors",
                         cache:    "no-cache",
-                        body:     data
+                        body:     formData
                     }
+
+                    //show loading animation
+                    this.utils.loading(true)
 
                     //request promisse with fetch api -> catch errors and finally hide loading animation
                     fetch(fproc.action, options).then(res => {
