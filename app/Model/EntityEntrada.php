@@ -9,7 +9,7 @@ class EntityEntrada extends Entity
     protected null|int|EntityDepartamento $departamento;
     protected string $insumos;
     protected int $status;
-    protected ?string $dtcreate;
+    protected string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
     protected ?string $dtreceiver;

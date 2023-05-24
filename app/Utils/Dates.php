@@ -179,7 +179,7 @@ class Dates
         $fmtt = null;
         if($dataLocal != null)
         {
-            $data = new DateTimeImmutable(self::convetToUTC($dataLocal) ?? 'now');
+            $data = new DateTimeImmutable(self::convertDtTimeToUtc($dataLocal) ?? 'now');
             $fmtt = $data->format('Y-m-d H:i:s');
         }
         return $fmtt;
@@ -237,6 +237,19 @@ class Dates
         if($localDate != null && count($ldate) == 3)
         {
             $cdate = implode('-', array_reverse($ldate));
+        }
+
+        return $cdate;
+    }
+
+    private static function convertDtTimeToUtc(?string $locaDateTime):?string
+    {
+        $cdate = null;
+        $ldate = explode(' ', $locaDateTime);
+        if($locaDateTime != null && count($ldate) == 2)
+        {
+            $date = explode('/', $ldate[0]);
+            $cdate = implode('-', array_reverse($date)).' '.$ldate[1];
         }
 
         return $cdate;

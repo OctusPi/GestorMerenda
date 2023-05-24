@@ -25,10 +25,9 @@ class ConnDB
     private static string $conntype = 'mysql';
     private static string $connhost = 'database';
     private static string $connport = '3306';
-    private static string $conndata = 'data_altfolha';
+    private static string $conndata = 'data_gestormerenda';
     private static string $connuser = 'root';
     private static string $connpass = 'tiger';
-
 
     /**
      * PDO instace connectio DB

@@ -8,7 +8,7 @@ class EntityEstoque extends Entity
     protected int|EntitySecretaria $secretaria;
     protected null|int|EntityDepartamento $departamento;
     protected int $quantidade;
-    protected ?string $dtcreate;
+    protected string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
 

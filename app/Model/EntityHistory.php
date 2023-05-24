@@ -8,7 +8,7 @@ class EntityHistory extends Entity
     protected int $origem;
     protected ?string $observacao;
     protected int $status;
-    protected ?string $dtcreate;
+    protected string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
 

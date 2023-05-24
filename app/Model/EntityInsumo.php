@@ -8,9 +8,11 @@ class EntityInsumo extends Entity
     protected string $insumo;
     protected string $percapitas;
     protected int $tipo;
+    protected int $unidade;
     protected int $medida;
+    protected float $volume;
     protected int $qtalerta;
-    protected ?string $dtcreate;
+    protected string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
 
@@ -75,22 +77,31 @@ class EntityInsumo extends Entity
         ];
     }
 
-    public static function nivelArr():array
+    public static function unidadeArr():array
     {
-        return EntityDepartamento::nivelArr();
+        return [
+            1 => 'Caixa',
+            2 => 'Fardo',
+            3 => 'Pacote',
+            4 => 'Lata',
+            5 => 'Rolo',
+            6 => 'Frasco',
+            7 => 'Garrafa',
+            8 => 'Pote',
+            9 => 'Sachê',
+            10 => 'Unidade',
+        ];
     }
 
     public static function medidaArr():array
     {
         return [
-            1 => 'Kg',
-            2 => 'gm',
-            3 => 'Lt',
-            4 => 'ml',
-            5 => 'Caixa',
-            6 => 'Fardo',
-            7 => 'Pacote',
-            8 => 'Und'
+            1 => 'KG',
+            2 => 'GM',
+            3 => 'LT',
+            4 => 'ML',
+            5 => 'MT',
+            6 => 'CM'
         ];
     }
 }

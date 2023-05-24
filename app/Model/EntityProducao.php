@@ -10,7 +10,7 @@ class EntityProducao extends Entity
     protected string $producao;
     protected int|EntitySaida $saida;
     protected ?string $observacao;
-    protected ?string $dtcreate;
+    protected string $dtcreate;
     protected ?string $dtupdate;
     protected int $agente;
 
