@@ -13,6 +13,7 @@ class Utils
             data : { mask: '00/00/0000' },
             cep : { mask: '00000-000' },
             nis : { mask: '000.00000.00-0' },
+            inep : { mask: '0000-0000' },
 
             numb : {
                 mask: Number,
@@ -67,6 +68,22 @@ class Utils
             elements.forEach(e => {
                 active ? e.setAttribute('disabled', true) : e.removeAttribute('disabled')
             })
+        }
+    }
+
+    counttime(minutes, contenttime){
+        const viewtime = contenttime ?? document.getElementById('sessiontime')
+        if(viewtime){
+            let seconds = 59
+            setInterval(function(){
+                seconds--
+                if(seconds == 0){
+                    seconds = 59
+					minutes--
+                }
+                    viewtime.innerHTML = 
+					minutes >= 0 ? minutes.toString().padStart(2, '0')+':'+seconds.toString().padStart(2, '0') : '00:00'
+            }, 1000)
         }
     }
 }

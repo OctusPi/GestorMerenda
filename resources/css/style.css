@@ -1,6 +1,7 @@
 *{
     font-family: var(--ft-base);
     box-sizing: border-box;
+    list-style: none;
 }
 
 html, body{
@@ -35,7 +36,7 @@ footer{
     position: fixed;
     bottom: 0;
     opacity: 0.5;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 .bg-fundo{
     background-color: var(--bg-fundo);
@@ -225,4 +226,219 @@ footer{
     background-color: var(--bg-danger-dark);
     color: var(--bg-danger);
     transition: 0.2s;
+}
+
+.nav-sysinfo{
+    width: 100vw;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    background-color: var(--bg-base);
+    z-index: 3000;
+}
+
+.nav-container-sysinfo{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-sysinfo{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--bg-fundo);
+}
+.title-sysinfo img{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+.title-sysinfo h1{
+    font-size: 1rem;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+}
+.title-sysinfo ul{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.title-sysinfo ul li{
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.title-sysinfo ul li a{
+    margin: 0;
+    padding: 0;
+    color: var(--bg-hover);
+    font-size: 0.7rem;
+}
+.user-sysinfo .dropdown{
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+.user-sysinfo .dropdown a{
+    margin: 0;
+    padding: 0;
+    color: var(--bg-fundo);
+    font-weight: 700;
+}
+
+.user-sysinfo .dropdown-menu{
+    margin: 0;
+    padding: 15px;
+    background-color: var(--bg-base);
+    border-radius: 0;
+    border-bottom-left-radius: var(--radio);
+    border-bottom-right-radius: var(--radio);
+    border: none;
+    font-size: 0.8rem;
+    min-width: 260px;
+}
+.user-sysinfo .dropdown-menu li p{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+    color: var(--bg-action);
+    font-weight: 500;
+}
+
+.user-sysinfo .dropdown-menu li a{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+    color: var(--bg-action);
+    font-weight: 500;
+}
+
+.user-sysinfo .dropdown-menu li a:hover{
+    color: var(--bg-hover);
+    background: none;
+}
+
+
+.nav-primary{   
+    position: fixed;
+    top: 30px;
+    width: 100vw;
+    min-height: 80px;
+    font-size: 0.7rem !important;
+    background-color: var(--bg-card);
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
+    box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
+    z-index: 2999;
+}
+.nav-container-primary{
+    min-height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+.nav-container-primary .navbar{
+    min-height: 60px;
+    margin: 0;
+    padding: 0;
+}
+.nav-container-primary .navbar-toggler{
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-weight: 100;
+    --bs-navbar-toggler-border-color:none;
+    --bs-navbar-toggler-focus-width:none;
+}
+.navbar-block {
+    display: flex;
+    border-right: 1px solid var(--bg-fundo);
+    background-color: var(--bg-card);
+}
+.navbar-block i{
+    display: block;
+    font-size: 1.8rem;
+}
+.navbar-block:last-child{
+    border: none;
+}
+.navbar-block .nav-link{
+    text-align: center;
+    margin: 0;
+    padding: 0 15px !important;
+}
+
+.color-purple a{
+    color: rgb(208, 125, 225);
+}
+.color-purple a:hover{
+    color: rgb(146, 88, 157);
+}
+.color-blue a{
+    color: rgb(118, 149, 226);
+}
+.color-blue a:hover{
+    color: rgb(89, 113, 172);
+}
+.color-magenta a{
+    color:rgb(252, 115, 184);
+}
+.color-magenta a:hover{
+    color:rgb(179, 80, 130);
+}
+.color-green a{
+    color: rgb(61, 198, 166);
+}
+.color-green a:hover{
+    color: rgb(47, 152, 128);
+}
+.color-secondary a{
+    color: lightsteelblue;
+}
+
+.main-page{
+    padding-top: 135px;
+    padding-bottom: 70px;
+}
+.card{
+    border: none;
+}
+
+@media (max-width:500px){
+    .title-sysinfo ul{
+        display: none;
+    }
+
+    .user-name{
+        display: none;
+    }
+}
+
+@media(max-width:990px){
+    .navbar-block {
+        padding: 12px;
+        min-height: 60px;
+        border: none;
+    }
+    .navbar-block:last-child{
+        border-bottom-left-radius: var(--radio);
+        border-bottom-right-radius: var(--radio);
+    }
+    .navbar-block .nav-link{
+        display: block;
+        padding: 10px;
+    }
 }

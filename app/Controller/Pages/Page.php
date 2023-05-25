@@ -85,7 +85,7 @@ abstract class Page
             'modal'      => View::renderView('fragments/forms/delete'),
             
             'syscopy'    => "Licenciado para ".Utils::atob('company', $this->company)." <br> Desenvolvido por OctusPi - DEV &copy 2023",
-            'sisname'    => Utils::atob('sistema',   $this->company),
+            'sysname'   => Utils::atob('sistema',   $this->company),
             'sisdesc'    => Utils::atob('descricao', $this->company),
 
             'token'      => Forms::getToken(),

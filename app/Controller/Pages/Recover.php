@@ -44,10 +44,10 @@ class Recover extends Page
      */
     public function proccess():?string
     {
-        if(Forms::validForm('token', ['email'])){
+        if(Forms::validForm('token', ['cpf', 'email'])){
             
             $facDAO = (new FactoryDao())->daoUsuario();
-            $objDAO = $facDAO->readData(Forms::getPost(['email']));
+            $objDAO = $facDAO->readData(Forms::getPost(['cpf','email']));
 
             //not found user by e-mail
             if($objDAO == null){

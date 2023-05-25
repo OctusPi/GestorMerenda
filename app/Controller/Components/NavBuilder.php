@@ -76,57 +76,57 @@ class NavBuilder
     {
         return [
             'producao' => [
-                'name' => 'Produção Diária',
+                'name' => 'Produção',
                 'desc' => 'Registro Diário de Produção',
-                'icon' => 'journal-richtext',
-                'url'  => 'app?producao'
+                'icon' => 'bi-journal-richtext',
+                'url'  => '?app=producao'
             ],
             'secretarias' => [
                 'name' => 'Secretarias',
                 'desc' => 'Unidades Ordenadoras',
-                'icon' => 'houses',
+                'icon' => 'bi-houses',
                 'url'  => '?app=secretarias'
             ],
             'departamentos' => [
-                'name' => 'Departamentos',
+                'name' => 'Unidades',
                 'desc' => 'Unidades Executoras',
-                'icon' => 'inboxes',
+                'icon' => 'bi-inboxes',
                 'url'  => '?app=departamentos'
             ],
             'calendario' => [
-                'name' => 'Calendário Letivo',
+                'name' => 'Calendário',
                 'desc' => 'Gestão de Datas e Dias Letivos',
-                'icon' => 'calendar2-event',
+                'icon' => 'bi-calendar2-event',
                 'url'  => '?app=calendario'
             ],
             'insumos' => [
                 'name' => 'Insumos',
                 'desc' => 'Gestão de Insumos Base',
-                'icon' => 'boxes',
+                'icon' => 'bi-boxes',
                 'url'  => '?app=insumos'
             ],
             'estoque' => [
                 'name' => 'Estoque',
                 'desc' => 'Controle de Estoque',
-                'icon' => 'box-seam',
+                'icon' => 'bi-box-seam',
                 'url'  => '?app=estoque'
             ],
             'entradas' => [
                 'name' => 'Entradas',
                 'desc' => 'Registro de Entradas no Estoque',
-                'icon' => 'clipboard2-plus',
+                'icon' => 'bi-clipboard2-plus',
                 'url'  => '?app=entradas'
             ],
             'saidas' => [
                 'name' => 'Saídas',
                 'desc' => 'Registro de Saídas no Estoque',
-                'icon' => 'clipboard2-minus',
+                'icon' => 'bi-clipboard2-minus',
                 'url'  => '?app=saidas'
             ],
             'relatorios' => [
                 'name' => 'Relatórios',
                 'desc' => 'Dados Análitos e Quantitativos',
-                'icon' => 'bar-chart',
+                'icon' => 'bi-bar-chart',
                 'url'  => '?app=reports'
             ]
         ];

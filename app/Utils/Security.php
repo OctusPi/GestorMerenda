@@ -142,6 +142,14 @@ class Security
      */
     public static function isPassValid(string $newPass, string $repPass, string $oldPass = ''): array
     {
+        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/';
+
+        if(!preg_match($pattern, $newPass)){
+            return [
+                'status' =>false, 
+                'message'=>'Regras de segurança não satisfeitas para a nova senha!'
+            ];
+        }
 
         //checks if new password equal temp password
         if($newPass == $oldPass){

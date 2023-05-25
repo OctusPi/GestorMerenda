@@ -72,7 +72,7 @@ class Emails
         //send email
         $to   = Utils::atob('email', $usuario);
         $msg  = View::renderView(self::getMsg($type), self::getParams($usuario, $company, $params));
-        $send = mail($to, Utils::atob('sistema', $company), $msg, self::HEADER);
+        $send = mail($to, Utils::atob('sistema', $company) ?? 'Não Respoda', $msg, self::HEADER);
 
         //writelog
         $log  = ($send ? 'SUCCESS: ' : 'ERROR: ').' falha ao enviar email para '.$to; 

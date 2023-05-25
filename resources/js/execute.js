@@ -9,9 +9,10 @@ const mapper = new Mapper(
     ).map
 
 //forms rotines
-//forms.prevsub()
+forms.prevsub()
 forms.register({form:mapper.fproc, search:mapper.fsearch})
 
 
 //mask elements
 utils.mask(mapper.maskcpf, 'cpf')
+utils.counttime(29)

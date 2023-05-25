@@ -2,14 +2,14 @@
     <div class="form-signin text-center">
         <div class="form-signin-divisor mb-2">
             <i class="bi-file-earmark-lock" style="font-size: 4rem; color: var(--bg-gray);"></i>
-            <p class="description-signin p-0 m-0">{{username}}</p>
-            <p class="description-signin p-0 m-0">{{userperfil}}</p>
+            <p class="description-signin p-0 m-0">{{user_name}}</p>
+            <p class="description-signin p-0 m-0">{{user_mail}}</p>
         </div>
         <div class="form-signin-divisor">
             <h1 class="title-signin p-0 m-0">Troca de Senha Obrigatória</h1>
-            <h1 class="title-signin p-0 m-0">{{sisname}}</h1>
+            <h1 class="title-signin p-0 m-0">{{sysname}}</h1>
             <p class="description-signin p-0 m-0">{{sisdesc}}</p>
-            <form action="{{action}}" method="post" enctype="multipart/form-data" id="genericform" class="mt-2 px-5 asyncform">
+            <form action="{{action}}" method="post" enctype="multipart/form-data" id="fproc" class="mt-2 px-5">
                 <div id="msgalert"></div>
                 <div class="row">
                     <div class="col-12">
@@ -28,16 +28,22 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" id="repeatpass" name="repeatpass"
+                            <input type="password" id="repeatpass" name="reppass"
                                    class="form-control ocp-input-form ocp-mandatory my-2"
                                    placeholder="Repita a Nova Senha">
                         </div>
                     </div>
                 </div>
+                <p class="text-little m-0 p-0 mt-2 text-muted">
+                    Sua senha deve ter no minimo 8 caracteres
+                    com letras maiúsculas, minúsculas e números.<br>
+                    A senha <span class="text-danger">não</span> deve conter caracteres especiais como (@#$%!)
+                </p>
                 <button class="btn btn-sm btn-accept btn-block mt-3 mb-1" type="submit">
                     <i class="bi-check-circle-fill" style="font-size: 0.8rem;"></i>
                     Avançar
                 </button>
+                
                 <a class="d-block small" href="?app=login&action=logoff">Sair</a>
                 <p class="text-little m-0 p-0 mt-2">{{syscopy}}</p>
                 <input type="hidden" class="ocp-input-form" name="token" value="{{token}}">

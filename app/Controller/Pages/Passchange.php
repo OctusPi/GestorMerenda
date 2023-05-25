@@ -19,9 +19,9 @@ class Passchange extends Page
         parent::__construct($session, $usuario, false);
         
         //checks request change temp passwd
-        // if(!Utils::atob('passchange', $this->usuario)){
-        //     Security::redirect('?app=home');
-        // }
+        if(!Utils::atob('passchange', $this->usuario)){
+            Security::redirect('?app=home');
+        }
     }
 
     public function viewpage():string
@@ -44,26 +44,28 @@ class Passchange extends Page
             $ispass = Security::isPassValid(Utils::at('newpass', $posts), Utils::at('reppass', $posts), Utils::at('oldpass', $posts));
 
             if($ispass['status']){
+                if($this->usuario->getAttr('pid') == hash('sha256', Utils::at('oldpass', $posts) ?? '*'))
+                {
+                    $this->usuario->setAttr('pid', hash('sha256',Utils::at('newpass', $posts)));
+                    $this->usuario->setAttr('passchange', 0);
+                    $facDAO = (new FactoryDao())->daoUsuario($this->usuario);
+                    $wrtDAO = $facDAO->writeData();
 
-                $this->usuario->setAttr('pid', md5(Utils::at('newpass', $posts)));
-                $this->usuario->setAttr('passchange', 0);
-                $facDAO = (new FactoryDao())->daoUsuario($this->usuario);
-                $wrtDAO = $facDAO->writeData();
-
-                if($wrtDAO['status']){
-                    Emails::send(Emails::CHGPASS, $this->usuario, $this->company);
-                    Security::redirect();
-                    return Alerts::notify($wrtDAO['code'], 'Senha alterada com sucesso!');
+                    if($wrtDAO['status']){
+                        Emails::send(Emails::CHGPASS, $this->usuario, $this->company);
+                        Security::redirect();
+                        return Alerts::notify($wrtDAO['code'], 'Senha alterada com sucesso!');
+                    }else{
+                        return Alerts::notify($wrtDAO['code'], 'Não foi possível alterar a senha temporária');
+                    }
                 }else{
-                    return Alerts::notify($wrtDAO['code'], 'Não foi possível alterar a senha temporária', null, $this->usuario);
+                    return Alerts::notify(Alerts::STATUS_WARNING, 'Senha atual incorreta!'); 
                 }
-
             }else{
                 return Alerts::notify(Alerts::STATUS_WARNING, $ispass['message']);
             }
-
         }else{
-            return Alerts::notify(Alerts::STATUS_WARNING, 'Formulario inválido, atualize a página e tente novamente...', null, $this->usuario);
+            return Alerts::notify(Alerts::STATUS_WARNING, 'Formulario inválido, atualize a página e tente novamente...',);
         }
     }
 }
