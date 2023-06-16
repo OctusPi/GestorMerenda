@@ -4,9 +4,9 @@
             <img src="resources/imgs/logo.svg" alt="logo sistema">
         </div>
         <div class="form-signin-divisor">
-            <h1 class="title-signin p-0 m-0">{{sysname}}</h1>
-            <p class="description-signin p-0 m-0">{{sisdesc}}</p>
-            <form id="fproc" class="mt-2 px-5" action="{{action}}" method="post" enctype="">
+            <h1 class="title-signin p-0 m-0">{{sys_name}}</h1>
+            <p class="description-signin p-0 m-0">{{sys_desc}}</p>
+            <form id="fproc" class="px-5" action="{{action}}" method="post" enctype="multipart/form-data">
                 <div id="msgalert"></div>
                 <div class="row">
                     <div class="col-12">
@@ -29,7 +29,7 @@
                     Entrar
                 </button>
                 <a class="d-block small" href="?app=recover">Esqueceu sua Senha?</a>
-                <p class="text-little m-0 p-0 mt-2">{{syscopy}}</p>
+                <p class="text-little m-0 p-0 mt-2">{{sys_copy}}</p>
                 <input type="hidden" name="token" value="{{token}}">
             </form>
         </div>

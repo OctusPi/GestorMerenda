@@ -11,7 +11,7 @@ class ConnDB
     const TAB_COMPN = 'tabgm_company';
     const TAB_USER  = 'tabgm_usuarios';
     const TAB_SECTR = 'tabgm_secretarias';
-    const TAB_DEPTS = 'tabgm_departamentos';
+    const TAB_UNIDS = 'tabgm_unidades';
     const TAB_INSMS = 'tabgm_insumos';
     const TAB_ESTOQ = 'tabgm_estoques';
     const TAB_ENTRD = 'tabgm_entradas';

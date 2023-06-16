@@ -12,8 +12,9 @@ use Octus\App\Utils\Session;
 use Octus\App\Utils\Utils;
 use Octus\App\Utils\View;
 use Octus\App\Controller\Components\NavBuilder;
+use Octus\App\Controller\Pages\IPage;
 
-abstract class Page
+abstract class Page implements IPage
 {
     const APPNAME = 'Gestor_Merenda';
     const APPVERSION = 'v0.1.2 Beta';
@@ -84,9 +85,9 @@ abstract class Page
             'content'    => View::renderView($content, $params),
             'modal'      => View::renderView('fragments/forms/delete'),
             
-            'syscopy'    => "Licenciado para ".Utils::atob('company', $this->company)." <br> Desenvolvido por OctusPi - DEV &copy 2023",
-            'sysname'   => Utils::atob('sistema',   $this->company),
-            'sisdesc'    => Utils::atob('descricao', $this->company),
+            'sys_copy'   => "Licenciado para ".Utils::atob('company', $this->company)." <br> Desenvolvido por OctusPi - DEV &copy 2023",
+            'sys_name'   => Utils::atob('sistema',   $this->company),
+            'sys_desc'   => Utils::atob('descricao', $this->company),
 
             'token'      => Forms::getToken(),
             'action_del' => Route::route(['action' => 'send'])

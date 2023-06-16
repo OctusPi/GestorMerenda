@@ -15,7 +15,7 @@ class Logs
      * @param EntityUsuario|null $user
      * @return void
      */
-    public static function writeLog(string $log, ?EntityUsuario $user = null):void
+    public static function writeLog(?string $log, ?EntityUsuario $user = null):void
     {
         //create strig record log
         $data     = Dates::getDateTimeNow();

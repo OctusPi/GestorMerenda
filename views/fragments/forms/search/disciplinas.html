@@ -1,0 +1,41 @@
+<form action="{{search_action}}" method="post" enctype="multipart/form-data" id="fsearch">
+    
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc00" class="form-label small">Disciplina </label>
+            <input type="text" name="disciplina" id="inpSearc00" value=""
+                   class="form-control ocp-input-form">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc01" class="form-label small">Área de Ensino </label>
+            <select name="area" id="inpSearc01"
+                    class="form-control ocp-input-form">
+                    {{form_areas}}
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc02" class="form-label small">Tipo</label>
+            <select name="tipo" id="inpSearc02"
+                    class="form-control ocp-input-form">
+                    {{form_tipos}}
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-sm btn-accept">
+                <i class="bi-search" style="font-size: 0.8rem;"></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" name="token_search" value="{{token}}">
+</form>

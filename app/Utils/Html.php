@@ -13,9 +13,9 @@ class Html
      * @param string|null $color
      * @return string
      */
-    public static function pbig(?string $text, ?string $color = null):string
+    public static function pbig(?string $text, ?string $color = 'text-dark'):string
     {
-        return '<p class="ocp-semi-bold cc-contrast '.$color.'">'.$text.'</p>';
+        return '<p class="pbig '.$color.'">'.$text.'</p>';
     }
 
     /**
@@ -25,9 +25,9 @@ class Html
      * @param string|null $color
      * @return string
      */
-    public static function psmall(?string $text, ?string $color = 'text-dark'):string
+    public static function psmall(?string $text, ?string $color = 'text-secondary'):string
     {
-        return '<p class="small '.$color.'">'.$text.'</p>';
+        return '<p class="psmall '.$color.'">'.$text.'</p>';
     }
 
     public static function pdef(?string $text = null, ?string $color = 'text-muted'):string
@@ -45,7 +45,7 @@ class Html
 
     public static function icon(string $icon, string $color = 'text-secondary', string $size = '1rem'):string
     {
-        return '<i class="'.$icon.' '.$color.'" style="font-size: '.$size.';"></i>';
+        return '<i class="bi '.$icon.' '.$color.'" style="font-size: '.$size.';"></i>';
     }
 
      /**
@@ -93,23 +93,6 @@ class Html
         return View::renderView('components/select_mult', $multiParams);
     }
 
-    public static function formtxtinput(string $nome, string $id, bool $mandatory = true, string $class = '', string $placeholder = ''):string
-    {
-
-        $indicator   = $mandatory ? ' <span class="text-danger small">*</span>' : '';
-        $ismandatory = $mandatory ? 'ocp-mandatory' : '';
-
-        return '<div class="col-sm-12 col-md-6 col-lg-4">
-                <label for="'.$id.'" class="form-label col-form-label small text-truncate">
-                    '.$nome.$indicator.'
-                </label>
-                <input type="text" name="'.$id.'" id="'.$id.'"
-                    class="form-control ocp-input-form '.$ismandatory.' '.$class.'" 
-                    placeholder="'.$placeholder.'"
-                    value="">
-            </div>';
-    }
-
     public static function input(string $nome,string $id,bool $mandatory = false,string $class = '',string $placeholder = '',string $title = '',string $defvalue = '0'):string
     {
         $ismandatory = $mandatory ? 'ocp-mandatory' : '';
@@ -135,11 +118,12 @@ class Html
         : '';
     }
 
-    public static function imgView(?string $path):string
+    public static function imgView(?string $path, ?string $callicon = null):string
     {
+        $icon = $callicon ?? 'bi-image';
         return $path != null
         ? '<img src="uploads/'.$path.'" alt="" class="ocp-picture-imgform mx-auto"/>'
-        : '<i class="bi-image-alt text-secondary" style="font-size: 5rem;"></i>';
+        : '<i class="bi '.$icon.' text-secondary" style="font-size: 5.6rem;"></i>';
     }
 
     public static function imgReport(?string $path, string $alt = '', string $class = ''):string
@@ -168,7 +152,8 @@ class Html
     public static function genericTable(array $body = [], ?array $header = null, bool $count = true):string
     {
         //build cout total regiters
-        $total = $count ? '<span class="badge bg-base my-3">'.count($body).' Registros Exibidos</span>' : '';
+        $strtotal = count($body) > 1 ? 'Registros Localizados' : 'Registro Localizado';
+        $total = $count ? '<div class="tab-info text-end"><i class="bi bi-grip-vertical"></i>'.str_pad(strval(count($body)), 2, "0", STR_PAD_LEFT).' '.$strtotal.'</div>' : '';
         
         //build header table
         $top  = $header != null ? '<thead><tr>' : '';
@@ -196,42 +181,5 @@ class Html
         }
 
         return $total.$table;
-    }
-
-    public static function actionMenu(int $id, string $type):string
-    {
-        $urledit = Route::route(['action' => 'json', 'key' => $id]);
-
-        $edit = '<li>
-                    <a class="dropdown-item ocpedit" href="#" ocpurl="'.$urledit.'">
-                        <i class="bi-pencil me-1"></i>
-                        Editar
-                    </a>
-                </li>';
-
-        $delet = '<li>
-                    <a class="dropdown-item ocpdelete" href="#" data-bs-toggle="modal" data-bs-target="#modalDell" deleteid="'.$id.'">
-                        <i class="bi-trash3 me-1"></i>
-                        Excluir
-                    </a>
-                </li>';
-
-        $folha = '<li>
-                    <a class="dropdown-item" target="_blank" href="'.Route::route(['action'=> 'export', 'key'=>$id]).'">
-                        <i class="bi-file-pdf me-1"></i>
-                        Exportar PDF
-                    </a>
-                </li>';
-
-        
-
-
-        $action = match($type){
-            'admin'        => ['tab_nav_action_intens' => $edit.$delet],
-            'adminfolha'   => ['tab_nav_action_intens' => $folha],
-            default        => ['tab_nav_action_intens' => '']
-        };
-
-        return View::renderView('components/nav_tab_action', $action);
     }
 }

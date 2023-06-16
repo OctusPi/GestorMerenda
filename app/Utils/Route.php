@@ -61,23 +61,19 @@ class Route
     public static function route(array $mod):string
     {
         $route = [];
-
         foreach (self::gets() as $key => $value) {
             $value = Utils::at($key, $mod) != null ? $mod[$key] : $value;
             if($value != null ){
                 $route[$key] = $value;
             }
-            
         }
-
         return Security::sanitize('?'.implode('&', array_map(function($key, $value){
             return $key.'='.$value;
         }, array_keys($route), array_values($route))));
     }
-
+    
     /**
-     * Methos create destiny with param app in url
-     *
+     * Method create destiny with param app in url
      * @return Page
      */
     private function destiny():Page

@@ -1,5 +1,6 @@
 <?php
-namespace Octus\App\Pages;
+namespace Octus\App\Controller\Pages;
+
 
 use Octus\App\Model\EntityCompany;
 

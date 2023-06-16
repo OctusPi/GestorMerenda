@@ -2,6 +2,7 @@
 namespace Octus\App\Utils;
 
 use Octus\App\Model\Entity;
+use Octus\App\Model\EntityUsuario;
 
 class Alerts
 {
@@ -22,15 +23,16 @@ class Alerts
      * @param Entity|null $entity
      * @return string
      */
-    public static function notify(string $code, ?string $details = null, ?string $view = null, ?Entity $entity = null):string
+    public static function notify(string $code, ?string $details = null, ?string $view = null, ?int $id = null, ?EntityUsuario $usuario = null):string
     {
         //define message alert and entity feed form callback
         $status = ['code' => $code, 'details' => $details];
+        Logs::writeLog($code.': '.$details, $usuario);
 
         return json_encode([
             'status' => $status,
-            'id'     => Utils::atob('id', $entity),
-            'view'   => $view
+            'id'     => $id,
+            'view'   => $view != null ? json_decode($view)->{'view'} : null
         ]);
     }
 }

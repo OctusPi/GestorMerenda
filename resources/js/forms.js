@@ -45,7 +45,22 @@ class Forms
      */
     resetform(form){
         if(form){
+            //function reset form js
             form.reset()
+
+            //reset id form
+            const idform = document.getElementById('id')
+            if(idform){ idform.value = 0 }
+
+            //set unique code
+            this.utils.setcode([...document.querySelectorAll('.code')])
+
+            //reset container img container
+            const frame = document.getElementById('ocpframeimage');
+            if(frame){
+                frame.innerHTML = `<i class="bi bi-person-bounding-box text-secondary" style="font-size: 5.6rem;"></i>`
+            }
+            
         }
     }
 
@@ -55,7 +70,30 @@ class Forms
      * @param {JSON} json 
      */
     feedform(form, json){
-        
+        if(form && json){
+            this.resetform(form)
+            const fields = [...form.querySelectorAll('.ocp-input-form')]
+            const values = json.values
+
+            if(values){
+                //feed inputs, selects, radios and checkbox
+                fields.forEach(field => {
+                    let type = field.type
+                    if(type !== 'file' && values[field.name]){
+                        field.value = values[field.name]
+                    }
+                })
+
+                //feed img container
+                const frame = document.getElementById('ocpframeimage');
+                if(frame){
+                    if(values['foto']){
+                        frame.innerHTML = `<img src="uploads/${values['foto']}" 
+                        alt="" class="ocp-picture-imgform mx-auto"/>`
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -64,11 +102,7 @@ class Forms
      */
     sendform(params){
         if(params.form){
-
             params.form.addEventListener('submit', e => {
-
-                //instace local utilitary functions
-                const alerts = this.alerts;
 
                 const fproc   = params.form
                 const fsearch = params.search
@@ -81,10 +115,10 @@ class Forms
                 if(this.chkmandatory(fproc)){
 
                     //make data to body api fetch
-                    const formData = new FormData(fproc);
+                    const formData = new FormData(fproc)
                     if(fproc.dataset.reloadview){
                         //append in data params to search of reload view registers
-                        const appdata = fsearch ? new FormData(fsearch) : fproc.dataset.reloadview
+                        const appdata = fsearch ? new URLSearchParams(new FormData(fsearch)) : fproc.dataset.reloadview
                         formData.append('search', appdata)
                     }
 
@@ -115,8 +149,10 @@ class Forms
                                 //proccess json by function
                                 params.fn(json)
                                 
-                                //show message proccess in server side
-                                alerts.activealert({code:json.status.code, details:json.status.details})
+                                ///show message proccess in server side
+                                if(json.status){
+                                    this.alerts.activealert({code:json.status.code, details:json.status.details})
+                                }
                             }).catch(error => {
                                 this.alerts.activealert({code:'error', details:'Falha ao Processar Resposta'})
                                 console.log(error)
@@ -140,17 +176,34 @@ class Forms
         }
     }
 
+    search(params){
+        const utils = this.utils
+        
+        //get container to inner data json
+        const dataview = params.view ?? document.getElementById('datapage')
+        //function to valid container and json view to inset in DOM
+        params.fn = function(json){
+            
+            //view registers inserts
+            if(dataview && json.view){
+                dataview.innerHTML = json.view
+                utils.changeview('ctpage')
+            } 
+        }
+
+        this.sendform(params)
+    }
+
     /**
      * form register data in backend
      * @param {Object} params 
      */
     register(params){
-        //instace local utilitary functions
-        const alerts = this.alerts;
-        const utils  = this.utils;
+
+        const utils = this.utils
 
         //get container to inner data json
-        const dataview = params.view ?? document.getElementById('dataview')
+        const dataview = params.view ?? document.getElementById('datapage')
         //function to valid container and json view to inset in DOM
         params.fn = function(json){
             
@@ -163,10 +216,16 @@ class Forms
             //view registers inserts
             if(dataview && json.view){
                 dataview.innerHTML = json.view
-            } 
+                utils.changeview('ctpage')
+            }
+
         }
 
         this.sendform(params)
 
+    }
+
+    eraser(params){
+        this.register(params)
     }
 }

@@ -33,6 +33,54 @@ class Utils
     }
 
     /**
+     * Remove unnecessary elements in array
+     *
+     * @param array|null $dirty
+     * @param array|null $fkeys
+     * @return array
+     */
+    public static function filter(?array $dirty, ?array $fkeys = null):array
+    {
+        $filter = [];
+
+        if($dirty != null){
+            foreach ($dirty as $key => $value) {
+                if($fkeys == null){
+                    $filter[$key] = $value;
+                }else{
+                    if(in_array($key, $fkeys)){
+                        $filter[$key] = $value;
+                    }
+                }
+            }
+        }
+
+        return $filter;
+    }
+
+    /**
+     * conver async search string url in array and remove unnecessary elements
+     *
+     * @param string|null $search
+     * @param array $fields
+     * @return array
+     */
+    public static function urlsearch(?string $search, array $fields):array
+    {
+        $arrsearch = [];
+            
+            if($search != null){
+                $temp = explode('&', $search);
+                foreach($temp as $item){
+                    $tempitem = explode('=', $item);
+                    $arrsearch[$tempitem[0]] = $tempitem[1];
+                }
+            }
+
+            return self::filter($arrsearch, $fields);
+    }
+
+    /**
      * Method conevert sting to array using different pattern separator
      * @param string|null $data
      * @param string $pattern

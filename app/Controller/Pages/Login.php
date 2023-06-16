@@ -56,7 +56,7 @@ class Login extends Page
         //process form login
         if(Forms::validForm('token', array_keys($_POST))){
             
-            //criptex data forn to md5
+            //criptex data forn to sha256
             $params = [
                 'uid' => hash('sha256', Utils::at('uid', Forms::getPost(['uid']))),
                 'pid' => hash('sha256', Utils::at('pid', Forms::getPost(['pid'])))
@@ -79,9 +79,9 @@ class Login extends Page
                         default                  => '?app=home'
                     };
                     header("Location:$location");
-                    return Alerts::notify(Alerts::STATUS_OK, 'Redirecionando...', null, $facDAO -> getEntity());
+                    return Alerts::notify(Alerts::STATUS_OK, 'Redirecionando...', usuario:$objDAO);
                 }catch(Exception $e){
-                    return Alerts::notify(Alerts::STATUS_ERROR, 'Falha ao processar login...'.$e->getMessage(), null, $facDAO -> getEntity());
+                    return Alerts::notify(Alerts::STATUS_ERROR, 'Falha ao processar login...'.$e->getMessage(), usuario:$objDAO);
                 }
 
             }else{

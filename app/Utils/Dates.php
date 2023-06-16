@@ -219,7 +219,7 @@ class Dates
             $years[$start] = $start;
             $start++;
         }
-
+        arsort($years);
         return $years;
     }
 

@@ -16,9 +16,7 @@ a:hover{
 hr{
     color: var(--bg-gray);
 }
-label{
-    color: var(--cc-label);
-}
+
 button, a{
     border-radius: var(--btn-radio);
     border: none;
@@ -32,7 +30,7 @@ input[type="radio"]:checked{
 footer{
     width: 100%;
     display: block;
-    padding: 5px;
+    padding: 5px 10px;
     position: fixed;
     bottom: 0;
     opacity: 0.5;
@@ -101,13 +99,19 @@ footer{
     height: 240px;
     width: auto;
 }
-
 .title-signin{
     font-size: large;
     font-weight: bold;
 }
 .description-signin{
     font-size: small;
+}
+.form-label{
+    font-size: 0.8rem;
+    color: var(--bg-darkgray);
+    margin: 0;
+    padding: 0;
+    margin-top: 12px;
 }
 .ocp-input-form{
     appearance: none;
@@ -168,7 +172,7 @@ footer{
 .btn{
     font-size: small;
     font-weight: 500;
-    padding: 6px 15px;
+    padding: 6px 10px;
     border-radius: var(--btn-radio);
     border: none;
 }
@@ -228,140 +232,78 @@ footer{
     transition: 0.2s;
 }
 
+/*****start style navbar top*****/
+
 .nav-sysinfo{
-    width: 100vw;
-    height: 30px;
-    position: fixed;
-    top: 0;
+    min-height: 38px;
     background-color: var(--bg-base);
-    z-index: 3000;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 1000;
 }
 
-.nav-container-sysinfo{
-    display: flex;
-    height: 30px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.title-sysinfo{
-    display: flex;
-    height: 30px;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--bg-fundo);
-}
-.title-sysinfo img{
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
-}
-.title-sysinfo h1{
+.nav-sysinfo .navbar-brand{
     font-size: 1rem;
-    font-weight: bold;
-    height: 30px;
-    line-height: 30px;
-    margin: 0;
-    padding: 0;
-    margin-right: 10px;
-}
-.title-sysinfo ul{
-    display: flex;
-    height: 30px;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
+    font-weight: 700;
     padding: 0;
 }
 
-.title-sysinfo ul li{
-    height: 30px;
-    margin: 0;
-    padding: 0;
-    margin-right: 10px;
-}
-
-.title-sysinfo ul li a{
-    margin: 0;
-    padding: 0;
-    color: var(--bg-hover);
+.nav-sysinfo .navbar-nav{
     font-size: 0.7rem;
 }
-.user-sysinfo .dropdown{
-    height: 30px;
-    margin: 0;
-    padding: 0;
+
+.nav-sysinfo .navbar-nav .nav-link{
+    color: var(--bg-action);
 }
-.user-sysinfo .dropdown a{
-    margin: 0;
-    padding: 0;
-    color: var(--bg-fundo);
+.nav-sysinfo .navbar-nav .nav-link:hover{
+    
+    color: var(--bg-hover);
+    transition: 0.2s;
+}
+
+.nav-sysinfo-user .nav-link{
+    font-size: 0.9rem;
     font-weight: 700;
 }
-
-.user-sysinfo .dropdown-menu{
-    margin: 0;
-    padding: 15px;
-    background-color: var(--bg-base);
-    border-radius: 0;
-    border-bottom-left-radius: var(--radio);
-    border-bottom-right-radius: var(--radio);
-    border: none;
+.nav-sysinfo-user .dropdown-menu{
     font-size: 0.8rem;
-    min-width: 260px;
-}
-.user-sysinfo .dropdown-menu li p{
+    background-color: var(--bg-base);
+    border: none;
     margin: 0;
-    padding: 0;
-    margin-bottom: 8px;
-    color: var(--bg-action);
-    font-weight: 500;
+    border-radius: 0 0 var(--radio) var(--radio);
 }
 
-.user-sysinfo .dropdown-menu li a{
-    margin: 0;
-    padding: 0;
-    margin-bottom: 8px;
+.nav-sysinfo-user .dropdown-item{
     color: var(--bg-action);
-    font-weight: 500;
 }
 
-.user-sysinfo .dropdown-menu li a:hover{
-    color: var(--bg-hover);
+.nav-sysinfo-user .dropdown-item:hover{
     background: none;
+    color: var(--bg-hover);
+    transition: 0.2s;
 }
 
+.navbar-toggler{
+    border: none;
+    --bs-navbar-toggler-focus-width:none;
+}
 
+/*end style navbar top*/
+
+/*end style navbar primary*/
 .nav-primary{   
-    position: fixed;
-    top: 30px;
     width: 100vw;
-    min-height: 80px;
+    min-height: 40px;
+    margin: 0;
+    padding: 15px 0;
+    position: fixed;
+    top: 38px;
     font-size: 0.7rem !important;
     background-color: var(--bg-card);
     -webkit-box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
     -moz-box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
     box-shadow: 0px 5px 10px 0px rgba(159, 158, 158, 0.1);
-    z-index: 2999;
-}
-.nav-container-primary{
-    min-height: 80px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    
-}
-.nav-container-primary .navbar{
-    min-height: 60px;
-    margin: 0;
-    padding: 0;
-}
-.nav-container-primary .navbar-toggler{
-    padding: 0;
-    margin: 0;
-    border: none;
-    font-weight: 100;
-    --bs-navbar-toggler-border-color:none;
-    --bs-navbar-toggler-focus-width:none;
+    z-index: 999;
 }
 .navbar-block {
     display: flex;
@@ -380,7 +322,6 @@ footer{
     margin: 0;
     padding: 0 15px !important;
 }
-
 .color-purple a{
     color: rgb(208, 125, 225);
 }
@@ -409,36 +350,208 @@ footer{
     color: lightsteelblue;
 }
 
+/* end style navbar primary */
+
 .main-page{
-    padding-top: 135px;
+    padding-top: 150px;
     padding-bottom: 70px;
 }
 .card{
     border: none;
 }
+.card-header{
+    background-color: none;
+    background: none;
+    border: none;
+}
+.card-title h3{
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--bg-base);
+}
+.card-title p{
+    font-size: 0.7rem;
+    color: var(--bg-hover);
+}
+.ocp-drop-form{
+    min-width: 240px;
+    padding: 20px;
+    border: none;
+    border-radius: var(--radio);
+    -webkit-box-shadow: 0 20px 31px -5px rgba(122,122,122,0.2);
+    box-shadow: 0 20px 31px -5px rgba(122,122,122,0.2);
+}
+.ocp-table tr th{
+    padding: 10px 20px;
+    color: var(--bg-base);
+    font-size: small;
+}
+.ocp-table tr td{
+    vertical-align: middle;
+    padding: 10px 20px;
+    font-size: small;
+}
+.ocp-table p{
+    margin: 0;
+    padding: 0;
+}
+.ocp-table tr th:first-child{
+    text-align: center;
+}
+.ocp-table tr:hover td{
+    background-color: var(--bg-action);
+}
+.ocp-table tr th:last-child{
+    min-width: 80px;
+    text-align: end;
+}
+.ocp-table tr td:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+}
+.ocp-table tr td:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    min-width: 80px;
+    text-align: end;
+}
+.tab-info{
+    font-size: 0.8rem;
+    color: var(--bg-gray);
+}
+.ocp-triger-tabnav-action{
+    background: none;
+}
+.ocp-item-tabnav-action{
+    font-size: 0.8rem;
+    border: 1px solid var(--bg-action);
+    z-index: 3100;
+}
+.ocp-item-tabnav-action li a{
+    color: var(--bg-darkgray);
+}
+.ocp-item-tabnav-action li a:active{
+    background-color: var(--bg-hover);
+    color: var(--bg-action);
+}
+.ocp-tab-action{
+    color: var(--bg-hover);
+    font-size: 1rem;
+}
+.ocp-imgform{
+    width: 140px;
+    height: 140px;
+    background: var(--bg-card);
+    border-radius:  50%;
+    border: 1px solid var(--bg-impborder);
+    position: relative;
+}
+.ocp-content-imgform{
+    width: 130px;
+    height: 130px;
+    background: var(--bg-impborder);
+    border-radius:  50%;
+    overflow: hidden;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 100;
+}
+.ocpinputimgform{
+    width: 130px;
+    height: 130px;
+    opacity: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 101;
+}
+.ocp-picture-imgform{
+    height: 130px;
+    width: auto;
+}
 
-@media (max-width:500px){
-    .title-sysinfo ul{
-        display: none;
-    }
+.pbig{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
-    .user-name{
-        display: none;
-    }
+.psmall{
+    font-size: 0.7rem;
+}
+
+.bg-base{
+    background-color: var(--bg-base);
+}
+
+.ocp-dash-card{
+    border-radius: var(--radio);
+    padding: 10px;
+}
+
+.ocp-dash-card-one{
+    
+    background-color: var(--bg-success);
+    color: var(--bg-success-dark);
+}
+
+.ocp-dash-card-two{
+    background-color: var(--bg-primary);
+    color: var(--bg-primary-dark);
+}
+
+.ocp-dash-card-tree{
+    background-color: var(--bg-warning);
+    color: var(--bg-warning-dark);
+}
+
+.ocp-dash-card-for{
+    background-color: var(--bg-ligthgray);
+    color: var(--bg-darkgray);
+}
+
+.ocp-dash-card-content{
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.ocp-dash-card-content *{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.ocp-dash-card-content p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.ocp-dash-card-content h3 {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.ocp-dash-card-content span{
+    font-size: 0.8rem;
 }
 
 @media(max-width:990px){
+
+    .main-page{
+        padding-top: 118px;
+    }
+
     .navbar-block {
-        padding: 12px;
         min-height: 60px;
         border: none;
+        width: auto;
+        margin: 10px 0;
     }
-    .navbar-block:last-child{
-        border-bottom-left-radius: var(--radio);
-        border-bottom-right-radius: var(--radio);
-    }
+    
     .navbar-block .nav-link{
         display: block;
-        padding: 10px;
+        width: 25%;
     }
 }

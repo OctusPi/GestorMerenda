@@ -1,49 +1,61 @@
 <header>
-    <div class="nav-sysinfo">
-        <div class="container nav-container-sysinfo">
-            <div class="title-sysinfo">
-                <img src="resources/imgs/icone.ico" alt="logo sistema">
-                <h1>{{sysname}}</h1>
-                <nav>
-                    <ul>
-                        <li><a href="?app=manual">Manual</a></li>
-                        <li><a href="?app=sobre">Sobre</a></li>
-                        <li><a href="#">Versão: {{sys_version}}</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="user-sysinfo">
-                <div class="dropdown">
-                    <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle" style="font-size: 1rem;"></i>
-                        <span class="user-name">{{user_name}}</span>
-                    </a><ul class="dropdown-menu">
-                        <li>
-                            <p><i class="bi bi-person-lines-fill"></i> Perfil: {{user_perfil}}</p>
-                            <p><i class="bi bi-calendar-event"></i> Ultimo Acesso: {{user_lastlogin}}</p>
-                            <p><i class="bi bi-clock-history"></i> Tempo Seção: <span id="sessiontime"></span></p>
+    <nav class="nav-sysinfo navbar fixed-top navbar-expand-lg" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="resources/imgs/icone.ico" alt="Logo" width="24" height="24" class="d-inline-block align-text-top">
+                {{sys_name}}
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?app=manual">Manual</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="app=sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{sys_version}}</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <ul class="nav-sysinfo-user navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                                {{user_name}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><span class="dropdown-item"><i class="bi bi-person-lines-fill"></i> {{user_perfil}}</span></li>
+                                <li><span class="dropdown-item" href="#"><i class="bi bi-calendar-event"></i> {{user_lastlogin}}</span></li>
+                                <li><span class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> <span id="sessiontime"></span></span></li>
+                                <li><a class="dropdown-item {{user_adm}}" href="?app=admin {{user_adm}}"><i class="bi bi-gear-fill"></i> Administração</a></li>
+                            </ul>
                         </li>
-                        <li><a class="dropdown-item {{user_adm}}" href="?app=admin"><i class="bi bi-gear-fill"></i> Administração</a></li>
-                        <li><a class="dropdown-item" href="?app=login&action=logoff"><i class="bi bi-door-open-fill"></i></i> Sair</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?app=login&action=logoff">
+                                <i class="bi bi-door-open-fill"></i> Sair
+                            </a>
+                        </li>
                     </ul>
-                  </div>
+                </div>
             </div>
         </div>
-    </div>
-    <nav class="nav-primary">
-        <div class="container nav-container-primary">
-            <nav class="navbar navbar-expand-lg">
-                <div>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        {{nav_builder}}
-                    </div>
-                  </div>
+    </nav>
+
+    <nav class="nav-primary navbar fixed-top navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-menu-button-wide"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                {{nav_builder}}
                 </div>
-              </nav>
+            </div>
         </div>
     </nav>
 </header>

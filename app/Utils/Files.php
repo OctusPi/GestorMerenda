@@ -22,8 +22,10 @@ class Files
             'text/csv'   => '.csv',
             'image/png'  => '.png',
             'image/jpeg' => '.jpg',
+            'image/jpg' => '.jpg',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => '.xlsx',
-            'application/vnd.ms-excel' => '.xlsx'
+            'application/vnd.ms-excel' => '.xlsx',
+            'application/pdf' => '.pdf'
         ];
     }
 

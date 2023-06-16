@@ -17,7 +17,7 @@ class EntityUsuario extends Entity
     const NVL_INICIAL       = 0;
     const NVL_PRODUCAO      = 1;
     const NVL_SECRETARIAS   = 2;
-    const NVL_DEPARTAMENTOS = 3;
+    const NVL_UNIDADES = 3;
     const NVL_CALENDARIO    = 4;
     const NVL_INSUMOS       = 5;
     const NVL_ESTOQUE       = 6;
@@ -87,13 +87,13 @@ class EntityUsuario extends Entity
         {
             self::PRF_ADMIN => [
                 ['producao'],
-                ['secretarias', 'departamentos', 'calendario'],
+                ['secretarias', 'unidades', 'calendario'],
                 ['insumos', 'estoque', 'entradas', 'saidas'],
                 ['relatorios']
             ],
 
             self::PRF_GESTOR => [
-                ['departamentos', 'calendario'],
+                ['unidades', 'calendario'],
                 ['insumos', 'estoque', 'entradas', 'saidas'],
                 ['relatorios']
             ],
@@ -192,7 +192,7 @@ class EntityUsuario extends Entity
             self::NVL_INICIAL       => 'Acesso Inicial',
             self::NVL_PRODUCAO      => 'Registro de Produção',
             self::NVL_SECRETARIAS   => 'Gestão de Secretarias',
-            self::NVL_DEPARTAMENTOS => 'Gestão de Departamentos',
+            self::NVL_UNIDADES => 'Gestão de Departamentos',
             self::NVL_CALENDARIO    => 'Gestão Calendário Escolar',
             self::NVL_INSUMOS       => 'Registro de Insumos',
             self::NVL_ESTOQUE       => 'Gestão de Estoque',

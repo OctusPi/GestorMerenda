@@ -2,10 +2,9 @@
 <div class="modal fade" id="modalDell" tabindex="-1" aria-labelledby="modalDellLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-danger p-4 ocp-rounded">
-        <form action="{{action_del}}" method="post" enctype="multipart/form-data" id="ocpdelete" reload="true">
+        <form action="{{action_del}}" method="post" enctype="multipart/form-data" id="fdelete" data-reloadview="true">
             <div class="modal-body text-light text-center">
                 <h1><i class="bi-exclamation-lg" style="font-size: 5rem;"></i></h1>
-                <h2 class="mb-3">Alerta</h2>
                 <p class="small">O Item será excluído definitivamente e não poderá ser restaurado! Tem certeza disso?</p>
                 <p class="small">Validção com senha de acesso necessária</p>
 
@@ -13,7 +12,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <input type="password" id="passconfirm" name="passconfirm"
-                                    class="form-control ocp-input-form ocp-mandatory my-3"
+                                    class="form-control ocp-input-form ocp-mandatory my-2"
                                     placeholder="senha de acesso" autofocus>
                         </div>
                     </div>
@@ -29,7 +28,7 @@
                     <i class="bi-door-open me-1" style="font-size: 0.8rem;"></i>
                     Cancelar
                 </button>
-                <input type="hidden" name="id" value="" id="ocpiddel">
+                <input type="hidden" name="id" value="" id="iddelete">
                 <input type="hidden" name="token_trash" value="{{token}}">
             </div>
         </form>

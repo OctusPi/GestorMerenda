@@ -81,27 +81,22 @@ class Security
      * @param mixed $input
      * @return null|string
      */
-    public static function sanitize(mixed $input):?string
+    public static function sanitize(mixed $input):null|string|array
     {
         if($input != null){
-            
             if(is_array($input)){
-                
                 $clear = [];
-                foreach($input as $item){
-                    $clear[] = self::sanitize($item);
+                foreach($input as $key => $item){
+                    $clear[$key] = self::sanitize($item);
                 }
-                return Utils::toString($clear);
-
+                return self::sanitize($clear);
             }else{
                 $input = preg_replace("/(from|FROM|script|SCRIPT|select|SELECT|insert|INSERT|delete|DELETE|truncate|TRUNCATE|where|WHERE|drop|DROP|drop table|DROP TABLE|show tables|SHOW TABLES|#|\$|-\$-|\*|--|\\\\)/","",$input);
                 return strip_tags($input);
             }
-            
         }else{
             return null;
         }
-        
     }
 
     /**
@@ -224,20 +219,20 @@ class Security
     public static function isAuthList(?EntityUsuario $user, int $secretaria, int $departamento = 0):bool
     {
         if($user != null){
-            $credentials = $user->getCredentials();
-
-            return
-                ($credentials['profile'] == EntityUsuario::PRF_ADMIN)
-
-                ||  ($credentials['profile'] == EntityUsuario::PRF_GESTOR 
-                    && $secretaria == $credentials['secretaria'])
-
-                ||  ($credentials['profile'] == EntityUsuario::PRF_DEPTO 
-                    && $secretaria == $credentials['secretaria'] 
-                    && in_array($departamento, $credentials['deptos']));
-
+            $ucred = $user->getCredentials();
+            return (
+                (Utils::at('profile', $ucred) == EntityUsuario::PRF_ADMIN) 
+                ||
+                (Utils::at('profile', $ucred) == EntityUsuario::PRF_GESTOR &&
+                Utils::at('secretaria', $ucred) == $secretaria) 
+                ||
+                (Utils::at('profile', $ucred) == EntityUsuario::PRF_DEPTO &&
+                Utils::at('secretaria', $ucred) == $secretaria &&
+                ($departamento == 0 || in_array($departamento, Utils::at('deptos', $ucred))))
+            );
         }else{
             return false;
         }
+
     }
 }

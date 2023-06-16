@@ -50,7 +50,7 @@ class Forms
      */
     public static function validToken(?string $token):bool
     {
-        return Utils::at(self::$nmtoken, $_COOKIE) === $token;
+        return Utils::at(self::$nmtoken, $_COOKIE) == $token;
     }
 
     /**
@@ -116,13 +116,6 @@ class Forms
             (self::validToken(Utils::at($tkname, self::getPost()))) && 
             (self::checkMandatory($mandatory))
         );
-
-        //Case form invalid register in log
-        if(!$isValid){
-            if(!empty($_POST)){
-                Logs::writeLog('WARNING: Send invalid form!'.implode('-', array_keys($_POST)));
-            }
-        }
 
         return $isValid;
     }

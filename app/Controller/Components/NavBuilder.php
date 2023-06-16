@@ -87,11 +87,11 @@ class NavBuilder
                 'icon' => 'bi-houses',
                 'url'  => '?app=secretarias'
             ],
-            'departamentos' => [
+            'unidades' => [
                 'name' => 'Unidades',
                 'desc' => 'Unidades Executoras',
                 'icon' => 'bi-inboxes',
-                'url'  => '?app=departamentos'
+                'url'  => '?app=unidades'
             ],
             'calendario' => [
                 'name' => 'Calendário',
