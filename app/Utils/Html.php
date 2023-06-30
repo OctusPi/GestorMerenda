@@ -2,7 +2,6 @@
 namespace Octus\App\Utils;
 
 use Octus\App\Utils\View;
-use Octus\App\Utils\Route;
 
 class Html
 {
@@ -38,9 +37,9 @@ class Html
         return '<p class="small text-center '.$color.'">'.$icon.$text.'</p>';
     }
 
-    public static function amsg(?string $text, string $url = '#', string $color = 'text-success-dark'):string
+    public static function amsg(?string $text, string $url = '#', string $color = 'text-success-dark', string $target = '_blank'):string
     {
-        return '<a href="'.$url.'" target="_blank" class="'.$color.'"><strong>'.$text.'</strong></a>';
+        return '<a href="'.$url.'" target="'.$target.'" class="'.$color.'"><strong>'.$text.'</strong></a>';
     }
 
     public static function icon(string $icon, string $color = 'text-secondary', string $size = '1rem'):string
@@ -79,7 +78,7 @@ class Html
                 'name_item'  => $item,
                 'class_item' => 'itemcheck'.$name
             ];
-            $items .= View::renderView('components/select_mult_item', $params);
+            $items .= View::renderView('components/selectmultitem', $params);
         }
 
         $multiParams = [
@@ -90,10 +89,10 @@ class Html
 
         ];
 
-        return View::renderView('components/select_mult', $multiParams);
+        return View::renderView('components/selectmult', $multiParams);
     }
 
-    public static function input(string $nome,string $id,bool $mandatory = false,string $class = '',string $placeholder = '',string $title = '',string $defvalue = '0'):string
+    public static function input(string $nome,string $id,bool $mandatory = false,string $class = '',string $placeholder = '',string $title = '',?string $defvalue = '0'):string
     {
         $ismandatory = $mandatory ? 'ocp-mandatory' : '';
         return '<input type="text" name="'.$nome.$id.'" id="'.$nome.$id.'"
@@ -109,6 +108,27 @@ class Html
                 class="form-control '.$ismandatory.' '.$class.'">
                 '.self::comboBox($values, $default, true).'
                 </select>';
+    }
+
+    public static function checkbox(string $nome,string $id,bool $mandatory = false,string $class = '',string $placeholder = '',string $title = '',?string $defvalue = '0'):string
+    {
+        $ismandatory = $mandatory ? 'ocp-mandatory' : '';
+        return '<input type="checkbox" name="'.$nome.$id.'" id="'.$nome.$id.'"
+                    class="form-check-input '.$ismandatory.' '.$class.'" 
+                    placeholder="'.$placeholder.'" title="'.$title.'"
+                    value="'.$defvalue.'" checked>';
+    }
+
+    public static function submit(string $title = 'Processar'):string
+    {
+        return '<div class="row mt-3">
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-sm btn-accept">
+                        <i class="bi bi-check-circle" style="font-size: 0.8rem;"></i>
+                        '.$title.'
+                    </button>
+                </div>
+            </div>';
     }
 
     public static function imgRender(?string $path, string $alt = '', string $class = ''):string
@@ -153,7 +173,7 @@ class Html
     {
         //build cout total regiters
         $strtotal = count($body) > 1 ? 'Registros Localizados' : 'Registro Localizado';
-        $total = $count ? '<div class="tab-info text-end"><i class="bi bi-grip-vertical"></i>'.str_pad(strval(count($body)), 2, "0", STR_PAD_LEFT).' '.$strtotal.'</div>' : '';
+        $total = $count ? '<div class="tab-info text-start"><i class="bi bi-grip-vertical"></i>'.str_pad(strval(count($body)), 2, "0", STR_PAD_LEFT).' '.$strtotal.'</div>' : '';
         
         //build header table
         $top  = $header != null ? '<thead><tr>' : '';

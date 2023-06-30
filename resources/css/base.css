@@ -1,18 +1,19 @@
 :root{
     --radio : 5px;
     --btn-radio :5px;
-    --bg-base : #02876a;
-    --bg-hover : #064034;
+    --bg-base : #249e80;
+    --bg-hover : #166753;
     --bg-contrast : #FFAE00;
-    --cc-text: #ffffff;
+    --cc-text: #2e2e2e;
     --cc-label: #232323;
     --bg-card: #ffffff;
     --bg-fundo: #f2f2f2;
     --bg-imput: #ffffff;
     --bg-impfocus: #EBEDF3;
     --bg-impborder:#e2e2e3;
+    --bg-placeholder:#c0c0c0;
     --bg-shadow: #cac9c9;
-    --bg-action: #c6ffe5;
+    --bg-action: #acfae7;
     --bg-gray: #939191;
     --bg-ligthgray: #cac9c9;
     --bg-darkgray: #5d5d5d;
@@ -27,19 +28,20 @@
     --ft-base: 'Poppins', Helvetica, Tahoma, Sans-serif;
 }
 
-/* Working in dark theme*
-:dark{
+/* Working in dark theme
+:root{
     --radio : 6px;
     --btn-radio :6px;
     --bg-base : #51929d;
     --bg-hover : #3c808c;
     --bg-contrast : #191D32;
     --cc-text: #ffffff;
-    --bg-card: #ffffff;
-    --bg-fundo: #ececec;
-    --bg-imput: #ffffff;
-    --bg-impfocus: #EBEDF3;
-    --bg-impborder:#e2e2e3;
+    --bg-card: #1a1a1a;
+    --bg-fundo: #111010;
+    --bg-imput: #1c1c1c;
+    --bg-impfocus: #262627;
+    --bg-impborder:#020202;
+    --bg-placeholder:#757575;
     --bg-shadow: #cac9c9;
     --bg-action: #b4e7f0;
     --bg-gray: #939191;
@@ -53,6 +55,5 @@
     --bg-primary-dark: #1a5f91;
     --bg-warning-dark: #8d6318;
     --bg-danger-dark: #943844;
-    --ft-base: 'Ubuntu', Helvetica, Tahoma, Sans-serif;
-}
-*/
+    --ft-base: 'Poppins', Helvetica, Tahoma, Sans-serif;
+}*/

@@ -182,11 +182,12 @@ abstract class Dao implements IDao
      */
     public function daoGetAll(array $params = [], string $order = '', string $limit = '', string $mode = ' AND ', string $columns = '*'):?array
     {
+        
         //create binds and fields dynamic by entity and params search
         $params = $this->mapParams($params);
         $binds  = array_map($this->mapOperator(), array_keys($params), array_values($params));
         $fields = $params != null ? ' WHERE '. implode($mode, $binds) : '';
-		$search = $this->lineWildCard(array_map($this->mapWildCard(), array_values($params)));
+		$search = $this->lineWildCard(array_map($this->mapWildCard(), $params));
 
         //make fields order and limit
         $order = strlen($order) ? ' ORDER BY '.$order : '';
@@ -223,7 +224,6 @@ abstract class Dao implements IDao
      */
     public function daoGetJoin(array $joins, array $params = [], string $order = '', string $limit = '', string $mode = ' AND ', string $columns = '*'):?array
     {
-
         //make join values and concatene tables
 		$mapfields = array_map($this->mapJoin(), array_keys($joins), array_values($joins));
         $maptabs   = array_map(
@@ -252,8 +252,24 @@ abstract class Dao implements IDao
         //make sql
         $sql = 'SELECT '.$columns.' FROM '.$this->getEntity()->getDataTableEntity().$innerjoin.$fields.$order.$limit;
 
+        //Logs::writeLog($sql);
+        
         //execute query and return array statment
-        return $this->execQueryFetch($sql, $search, true);
+        //return $this->execQueryFetch($sql, $search, true);
+
+        $entft = [];
+        $fetch = $this->execQueryFetch($sql, $search, true);
+
+        //loop statment end feed entity array
+        if($fetch !=null){
+            foreach ($fetch as $food) {
+                $nmentity = $this->getEntity()->classname();
+                $entity   = new $nmentity();
+                $entity  -> feedsEntity($food);
+                $entft[]  = $entity;
+            }
+        }
+        return $entft;
     }
 
     /**
@@ -354,18 +370,19 @@ abstract class Dao implements IDao
      * @param array|null $mapwild
      * @return array
      */
-    private function lineWildCard(array $mapwild, array $merge = []):array
+    private function lineWildCard(?array $mapwild, array $merge = []):array
     {
-
         if($mapwild != null){
+
             foreach ($mapwild as $map) {
                 if(is_array($map)){
-                    $this->lineWildCard($map, $merge);
+                    $merge = array_merge($merge, $map);
                 }else{
                     $merge[] = $map;
                 }
             }
         }
+
         return $merge;
     }
 
@@ -412,6 +429,7 @@ abstract class Dao implements IDao
             $connDB    =  ConnDB::openConn();
             $params    =  $params != null ? array_values($params) : [];
             $execQuery =  $connDB->prepare($sql);
+            Logs::writeLog(implode(', ', $params));
             $execQuery -> execute($params);
             $exec      =  $execQuery->rowCount() > 0;
 

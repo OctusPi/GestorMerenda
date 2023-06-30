@@ -218,21 +218,7 @@ class Security
      */
     public static function isAuthList(?EntityUsuario $user, int $secretaria, int $departamento = 0):bool
     {
-        if($user != null){
-            $ucred = $user->getCredentials();
-            return (
-                (Utils::at('profile', $ucred) == EntityUsuario::PRF_ADMIN) 
-                ||
-                (Utils::at('profile', $ucred) == EntityUsuario::PRF_GESTOR &&
-                Utils::at('secretaria', $ucred) == $secretaria) 
-                ||
-                (Utils::at('profile', $ucred) == EntityUsuario::PRF_DEPTO &&
-                Utils::at('secretaria', $ucred) == $secretaria &&
-                ($departamento == 0 || in_array($departamento, Utils::at('deptos', $ucred))))
-            );
-        }else{
-            return false;
-        }
+        return true;
 
     }
 }

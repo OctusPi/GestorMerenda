@@ -7,6 +7,7 @@
 html, body{
     height: 100%;
 }
+
 a{
     text-decoration: none;
 }
@@ -16,7 +17,9 @@ a:hover{
 hr{
     color: var(--bg-gray);
 }
-
+label{
+    color: var(--cc-label);
+}
 button, a{
     border-radius: var(--btn-radio);
     border: none;
@@ -35,6 +38,7 @@ footer{
     bottom: 0;
     opacity: 0.5;
     font-size: 0.7rem;
+    background-color: var(--bg-ligthgray);
 }
 .bg-fundo{
     background-color: var(--bg-fundo);
@@ -118,10 +122,11 @@ footer{
     -webkit-appearance: none;
     -moz-appearance: none;
     box-shadow: none;
+    color: var(--cc-text);
     border-radius: var(--radio);
-    padding: 10px 15px;
     background: var(--bg-imput);
     border: 1px var(--bg-impborder) solid;
+    padding: 10px 15px;
     font-size: 0.85rem;
     font-weight: 500;
     transition: 0.4s;
@@ -132,13 +137,14 @@ footer{
     box-shadow: none;
     background: var(--bg-impfocus);
     border: 1px var(--bg-base) solid;
+    color: var(--cc-text);
     transition: 0.4s;
 }
 .ocp-input-form:disabled{
     background: var(--bg-shadow)!important;
 }
 .ocp-input-form::placeholder{
-    color: var(--bg-ligthgray);
+    color: var(--bg-placeholder);
 }
 .ocp-enfase{
     border: 1px var(--bg-danger) solid;
@@ -183,7 +189,7 @@ footer{
 }
 .btn-accept{
     background-color: var(--bg-base);
-    color: var(--cc-text);
+    color: var(--bg-card);
     transition: 0.2s;
 }
 .btn-accept:hover{
@@ -358,6 +364,7 @@ footer{
 }
 .card{
     border: none;
+    background-color: var(--bg-card);
 }
 .card-header{
     background-color: none;
@@ -371,7 +378,7 @@ footer{
 }
 .card-title p{
     font-size: 0.7rem;
-    color: var(--bg-hover);
+    color: var(--cc-text);
 }
 .ocp-drop-form{
     min-width: 240px;
@@ -420,6 +427,28 @@ footer{
     font-size: 0.8rem;
     color: var(--bg-gray);
 }
+
+.tab-item{
+    margin: 0 3px;
+    padding: 5px;
+    border-radius: var(--radio);
+}
+.tab-item p{
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.tab-item span{
+    font-size: 0.7rem;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
 .ocp-triger-tabnav-action{
     background: none;
 }
@@ -513,6 +542,11 @@ footer{
     color: var(--bg-darkgray);
 }
 
+.ocp-dash-card-danger{
+    background-color: var(--bg-danger);
+    color: var(--bg-danger-dark);
+}
+
 .ocp-dash-card-content{
     margin-left: 10px;
     overflow: hidden;
@@ -535,6 +569,16 @@ footer{
 
 .ocp-dash-card-content span{
     font-size: 0.8rem;
+}
+
+.ocp-form-multlist{
+    width: 100%;
+}
+
+.ocp-div-multi-check{
+    margin: 10px;
+    display: inline-block;
+    width: 40%;
 }
 
 @media(max-width:990px){

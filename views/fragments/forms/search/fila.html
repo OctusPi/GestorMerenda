@@ -1,0 +1,57 @@
+<form action="{{search_action}}" method="post" enctype="multipart/form-data" id="fsearch">
+    
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc00" class="form-label small">Paciente </label>
+            <input type="text" name="nome" id="inpSearc00" value=""
+                   class="form-control ocp-input-form" placeholder="Nome do Paciente">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc01" class="form-label small">Cartão do SUS </label>
+            <input type="text" name="sus" id="inpSearc01" value=""
+                   class="form-control ocp-input-form" placeholder="">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc02" class="form-label small">Num. CPF </label>
+            <input type="text" name="cpf" id="inpSearc02" value=""
+                   class="form-control ocp-input-form maskcpf" placeholder="000.000.000-00">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc03" class="form-label small">Atendimento </label>
+            <select name="atendimento" id="inpSearc03" 
+                   class="form-control ocp-input-form">
+                   {{form_atms}}
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc04" class="form-label small">Status </label>
+            <select name="status" id="inpSearc04"
+                   class="form-control ocp-input-form">
+                   {{form_status}}
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-sm btn-accept">
+                <i class="bi-search" style="font-size: 0.8rem;"></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" name="token_search" value="{{token}}">
+</form>

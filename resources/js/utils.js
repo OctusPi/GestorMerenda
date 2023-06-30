@@ -231,6 +231,29 @@ class Utils
     }
 
     /**
+     * Element multi check dinamic
+     * @param {Element} input 
+     * @param {Array} fields 
+     */
+    combomulti(input, fields)
+    {
+        if(input !== null  && fields !== null)
+        {
+            fields.forEach(element => {
+                element.addEventListener('change', () => {
+                    input.value = '';
+                    fields.forEach(e => {
+                        if(e.checked){
+                            const concat = input.value ? ', ' : '';
+                            input.value += concat+e.getAttribute('nameitem');
+                        }
+                    });
+                });
+            });
+        }
+    }
+
+    /**
      * Generate unique code to input html
      * @param {Array} fields 
      */

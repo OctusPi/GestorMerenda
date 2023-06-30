@@ -1,43 +1,38 @@
 <div id="dashfila" class="mb-3">
-    <span class="badge bg-base mb-3">Panorama Matrículas {{info_data}}</span>
     <div class="row">
         <div class="col-xl-3 col-lg-6 p-2">
-            <div class="ocp-dash-card ocp-dash-card-one align-middle d-flex">
-                <i class="bi-stack" style="font-size: 2rem;"></i>
+            <div class="ocp-dash-card ocp-dash-card-tree align-middle d-flex">
+                <p><i class="bi-stack" style="font-size: 1rem;"></i> {{p_aguardando}}</p>
                 <div class="ocp-dash-card-content">
-                    <p>{{info_matriculas}}</p>
-                    <h3>Total Matriculados</h3>
-                    <span>Matrículas regulares</span>
+                    <h3>Aguardando</h3>
+                    <span>Aguardando Vaga</span>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6 p-2">
             <div class="ocp-dash-card ocp-dash-card-two align-middle d-flex">
-                <i class="bi-ui-checks" style="font-size: 2rem;"></i>
+                <p><i class="bi-ui-checks" style="font-size: 1rem;"></i> {{p_atendimento}}</p>
                 <div class="ocp-dash-card-content">
-                    <p>{{info_transferidos}}</p>
-                    <h3>Alunos Transferidos</h3>
-                    <span>Total de Alunos Transferidos</span>
+                    <h3>Em Atendimento</h3>
+                    <span>Sessões Iniciadas</span>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6 p-2">
-            <div class="ocp-dash-card ocp-dash-card-tree align-middle d-flex">
-                <i class="bi-stack-overflow" style="font-size: 2rem;"></i>
+            <div class="ocp-dash-card ocp-dash-card-one align-middle d-flex">
+                <p><i class="bi-stack-overflow" style="font-size: 1rem;"></i> {{p_finalizado}}</p>
                 <div class="ocp-dash-card-content">
-                    <p>{{info_desistentes}}</p>
-                    <h3>Evasões e Desistências</h3>
-                    <span>Total Alunos Desistentes</span>
+                    <h3>Finalizados</h3>
+                    <span>Total de 10 Sessoões</span>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6 p-2">
             <div class="ocp-dash-card ocp-dash-card-for align-middle d-flex">
-                <i class="bi-x-circle-fill" style="font-size: 2rem;"></i>
+                <p><i class="bi-x-circle-fill" style="font-size: 1rem;"></i> {{p_cancelados}}</p>
                 <div class="ocp-dash-card-content">
-                    <p>{{info_sumidos}}</p>
-                    <h3>Não Localizados</h3>
-                    <span>Total Não Localizados</span>
+                    <h3>Cancelados</h3>
+                    <span>Atends. Cancelados</span>
                 </div>
             </div>
         </div>
